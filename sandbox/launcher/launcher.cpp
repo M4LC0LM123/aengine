@@ -1,7 +1,6 @@
 #include "raylib.h"
 #include <iostream>
 #define RAYGUI_IMPLEMENTATION
-#define GUI_GUILAYOUT_IMPLEMENTATION
 #include "raygui.h"
 #include "../main.h"
 
