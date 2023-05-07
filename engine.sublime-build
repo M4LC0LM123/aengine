@@ -1,0 +1,5 @@
+{
+	"cmd": ["/home/lukamalovic/Documents/GitHub/JavaAndStuff/cpp/build/buildL/build.sh"],
+	"working_dir": "/home/lukamalovic/Documents/GitHub/JavaAndStuff/cpp/",
+    "selector": "source.shell"
+}

@@ -1,0 +1,2 @@
+default:
+	clang++ -std=c++11 -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL ../../lib/libM/libraylib.a ../../sandbox/launcher/launcher.cpp -o main -I ../../include/
