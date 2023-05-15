@@ -6,13 +6,23 @@
 // config 
 #include "config.h"
 
-// bodyType (box2D -> Engine physics)
+// bodyType (box2D to Engine physics)
 #include "BodyType.h"
 
 // ecs
 #include "../Entity.cpp"
 #include "../EntityManager.cpp"
 #include "../Component.cpp"
+#include "../Collider.cpp"
+#include "../BoxCollider.cpp"
+#include "../Object.cpp"
+#include "../Body.cpp"
+#include "../KinematicBody.cpp"
+#include "../RigidBody.cpp"
+#include "../StaticBody.cpp"
+#include "../Sprite.cpp"
+#include "../Bloom.cpp"
+#include "../PhysicsBody.cpp"
 
 // toolbox
 #include "toolbox.h"
@@ -29,7 +39,7 @@
 
 // camera2D
 #include "../OrthographicCamera.cpp"
-#include "Camera.h"
+#include "../Camera.cpp"
 
 // prefab 
 #include "Prefab.h"

@@ -1,6 +1,7 @@
 #include "headers/EntityManager.h"
 #include "headers/toolbox.h"
 #include "headers/Entity.h"
+#include "headers/Collider.h"
 
 bool compareEntities(Entity* e1, Entity* e2)
 {
@@ -100,6 +101,10 @@ void EntityManager::renderColliders(bool debugMode)
             {
                 entity->getComponent<Object>()->renderColliders();
             }
+            else if (entity->hasComponent<Collider>())
+            {
+                entity->getComponent<Collider>()->renderColliders();
+            }
         }
     }
     else 
@@ -122,6 +127,12 @@ void EntityManager::renderColliders(bool debugMode)
                 if (debugMode) 
                     DrawLineV(entity->pos, {(EntityManager::camera.target.x - EntityManager::camera.offset.x) + GetScreenWidth()/2.0f, (EntityManager::camera.target.y - EntityManager::camera.offset.y) + GetScreenHeight()/2.0f}, colliderColor);
                 if (EntityManager::isInCamera(entity)) entity->getComponent<Object>()->renderColliders();
+            }
+            else if (entity->hasComponent<Collider>())
+            {
+                if (debugMode) 
+                    DrawLineV(entity->pos, {(EntityManager::camera.target.x - EntityManager::camera.offset.x) + GetScreenWidth()/2.0f, (EntityManager::camera.target.y - EntityManager::camera.offset.y) + GetScreenHeight()/2.0f}, colliderColor);
+                if (EntityManager::isInCamera(entity)) entity->getComponent<Collider>()->renderColliders();
             }
         }
     }

@@ -1,5 +1,7 @@
 #include "headers/Entity.h"
 #include "headers/EntityManager.h"
+#include "headers/Bloom.h"
+#include "headers/Object.h"
 
 // ------------------------ Entity ---------------------------------
 Entity::Entity()
