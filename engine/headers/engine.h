@@ -15,6 +15,7 @@
 #include "../Component.cpp"
 #include "../Collider.cpp"
 #include "../BoxCollider.cpp"
+#include "../CircleCollider.cpp"
 #include "../Object.cpp"
 #include "../Body.cpp"
 #include "../KinematicBody.cpp"

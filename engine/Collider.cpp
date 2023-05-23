@@ -9,4 +9,4 @@ Collider::Collider()
 void Collider::update(Entity *entity) { Component::update(entity); }
 void Collider::renderColliders() { }
 void Collider::set(float x, float y) { }
-bool Collider::overlaps(Collider *other) { }
+bool Collider::overlaps(Collider *other) { return false; }

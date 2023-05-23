@@ -1,4 +1,5 @@
 #include "headers/BoxCollider.h"
+#include "headers/CircleCollider.h"
 
 BoxCollider::BoxCollider()
 {
@@ -10,7 +11,7 @@ BoxCollider::BoxCollider()
 void BoxCollider::renderColliders()
 {
     Collider::renderColliders();
-    DrawRectangleRec(this->m_collider, colliderColor);
+    DrawRectangleLinesEx(this->m_collider, lineThickness, colliderColor);
 }
 
 void BoxCollider::update(Entity *entity)
@@ -34,6 +35,19 @@ bool BoxCollider::overlaps(BoxCollider *other)
     Rectangle rec = {other->x, other->y, other->width, other->height};
     if (CheckCollisionRecs(this->m_collider, rec))
     {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool BoxCollider::overlaps(CircleCollider* other)
+{
+    Collider::overlaps(other);
+    if (CheckCollisionCircleRec(Vector2{other->x, other->y}, other->radius, this->m_collider))
+    {   
         return true;
     }
     else

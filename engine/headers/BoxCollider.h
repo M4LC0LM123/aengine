@@ -1,12 +1,16 @@
 #pragma once
+#include "CircleCollider.h"
+
+struct CircleCollider;
 
 struct BoxCollider : public Collider
 {
     private:
         Rectangle m_collider;
 
-    float width;
-    float height;
+    public:
+        float width;
+        float height;
 
     BoxCollider();
 
@@ -14,5 +18,6 @@ struct BoxCollider : public Collider
     virtual void update(Entity* entity) override;
     virtual void set(float x, float y, float width, float height);
     virtual bool overlaps(BoxCollider* other);
+    virtual bool overlaps(CircleCollider* other);
 
 };

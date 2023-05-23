@@ -1,7 +1,6 @@
 #include "raylib.h"
 #include <iostream>
 #define RAYGUI_IMPLEMENTATION
-#define GUI_GUILAYOUT_IMPLEMENTATION
 #include "raygui.h"
 #include "../main.h"
 
@@ -15,6 +14,7 @@ int main(void)
     //const int screenWidth = 1024;
     //const int screenHeight = 720;
 
+    //SetTraceLogLevel(LOG_NONE); // disable raylib log at startup
     InitWindow(screenWidth, screenHeight, title);
     start();
     SetTargetFPS(fps);               // Set our game to run at 60 frames-per-second
