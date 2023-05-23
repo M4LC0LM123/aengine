@@ -5,3 +5,4 @@
 * Tilemap editor maybe?
 * lighting system
 * dynamic audio
+* mac support
