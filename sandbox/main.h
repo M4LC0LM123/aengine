@@ -116,6 +116,8 @@ void start()
     kinematic.getComponent<PhysicsBody>()->color = MAROON;
     kinematic.getComponent<PhysicsBody>()->init();
     kinematic.getComponent<Bloom>()->setColorFromShape(&kinematic);
+
+    Debug::printCurrentDir();
 }
 
 void update()

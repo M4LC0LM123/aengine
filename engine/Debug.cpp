@@ -32,14 +32,10 @@ struct Debug
         std::cout << str;
     }
 
-    #ifdef _WIN32
-
     static void printCurrentDir()
     {
         std::cout << "current dir: " << getCurrentDir() << nextln;
     }
-
-    #endif
 
     static void readln(std::string str)
     {

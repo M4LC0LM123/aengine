@@ -228,4 +228,12 @@ int getArrSize(T arr[])
     {
         return std::filesystem::current_path();
     }
+#elif __APPLE__
+    #include <filesystem>
+    #include <unistd.h>
+
+    std::string getCurrentDir()
+    {
+        return std::__fs::filesystem::current_path();
+    }
 #endif
