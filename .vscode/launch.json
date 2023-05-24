@@ -26,6 +26,13 @@
             "request": "launch",
             "program": "build/buildL/build.sh",
             "terminalKind": "integrated"
+        },
+        {
+            "name": "sandbox2DMac",
+            "type": "f5anything",
+            "request": "launch",
+            // in the intergrated terminal go into build/buildM or open the dir in intergrated terminal and run it from there
+            "command": "make & ./main",
         }
     ]
 }
