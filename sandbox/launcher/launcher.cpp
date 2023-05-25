@@ -16,6 +16,7 @@ int main(void)
 
     //SetTraceLogLevel(LOG_NONE); // disable raylib log at startup
     InitWindow(screenWidth, screenHeight, title);
+    InitAudioDevice();
     start();
     SetTargetFPS(fps);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -33,6 +34,7 @@ int main(void)
     // De-Initialization
     //--------------------------------------------------------------------------------------
     dispose();
+    CloseAudioDevice();
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
 

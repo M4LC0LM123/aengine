@@ -13,6 +13,7 @@
 #include "../Entity.cpp"
 #include "../EntityManager.cpp"
 #include "../Component.cpp"
+#include "../AmbientAudio.cpp"
 #include "../Collider.cpp"
 #include "../BoxCollider.cpp"
 #include "../CircleCollider.cpp"

@@ -7,6 +7,7 @@ Player::Player()
     this->scale = {40, 40};
     this->addComponent<Bloom>();
     this->addComponent<KinematicBody>();
+    this->addComponent<AmbientAudio>();
     this->getComponent<KinematicBody>()->textureScale = {40, 40};
     this->getComponent<KinematicBody>()->color = BLANK;
     this->getComponent<KinematicBody>()->bounce = false;
@@ -24,6 +25,7 @@ void Player::init()
     this->anim.frameSize = {16, 16};
     this->getComponent<KinematicBody>()->texture = LoadTexture("../assets/engine.png");
     this->getComponent<KinematicBody>()->setFrame({16, 16}, 0);
+    this->getComponent<AmbientAudio>()->set(LoadSound("../assets/jump.wav"));
     this->getComponent<Bloom>()->setColorFromImage(this);
 }
 
@@ -68,6 +70,7 @@ void Player::update()
         if (IsKeyPressed(KEY_SPACE) && this->getComponent<KinematicBody>()->isGrounded())
         {
             this->velocity.y = -500;
+            this->getComponent<AmbientAudio>()->play();
         }
 
         if (IsKeyPressed(KEY_E))

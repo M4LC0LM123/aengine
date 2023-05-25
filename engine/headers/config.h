@@ -7,7 +7,7 @@
 #define mapRows 32
 #define mapCols 32
 #define colliderColor GREEN
-int BLOOM_INTENSITY = 96;
+int BLOOM_INTENSITY = 0;
 
 //box2D
 #define vIterations 8

@@ -7,6 +7,7 @@ class Player : public Entity
         Vector2 velocity;
         bool debugInfo;
         Console console;
+        Sound jumpSound;
 
         Player();
         void init();

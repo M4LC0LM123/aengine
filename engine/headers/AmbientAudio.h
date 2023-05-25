@@ -1,0 +1,21 @@
+#pragma once
+#include "iostream"
+#include "raylib.h"
+
+struct AmbientAudio : Component
+{
+    private:
+        Sound m_sound;
+        bool m_paused;
+
+    public: 
+
+        AmbientAudio();
+        virtual void update(Entity* entity) override;
+        virtual void set(std::string path);
+        virtual void set(Sound sound);
+        virtual Sound get();
+        virtual void paused(bool p);
+        virtual void play();
+        virtual void dispose() override;
+};
