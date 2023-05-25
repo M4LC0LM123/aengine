@@ -7,7 +7,6 @@ Player::Player()
     this->scale = {40, 40};
     this->addComponent<Bloom>();
     this->addComponent<KinematicBody>();
-    this->addComponent<AmbientAudio>();
     this->getComponent<KinematicBody>()->textureScale = {40, 40};
     this->getComponent<KinematicBody>()->color = BLANK;
     this->getComponent<KinematicBody>()->bounce = false;
@@ -25,13 +24,15 @@ void Player::init()
     this->anim.frameSize = {16, 16};
     this->getComponent<KinematicBody>()->texture = LoadTexture("../assets/engine.png");
     this->getComponent<KinematicBody>()->setFrame({16, 16}, 0);
-    this->getComponent<AmbientAudio>()->set(LoadSound("../assets/jump.wav"));
     this->getComponent<Bloom>()->setColorFromImage(this);
+    this->jumpSound = LoadSound("../assets/jump.wav");
+    SetSoundVolume(this->jumpSound, 0.5f);
 }
 
 void Player::update()
 {
     Entity::update();
+
     if (!console.isActive())
     {
         if (IsGamepadAvailable(0))
@@ -41,6 +42,7 @@ void Player::update()
             if (IsGamepadButtonPressed(0, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && this->getComponent<KinematicBody>()->isGrounded())
             {
                 this->velocity.y = -500;
+                PlaySound(this->jumpSound);
             }
 
             if (IsGamepadButtonPressed(0, GAMEPAD_BUTTON_RIGHT_FACE_LEFT))
@@ -70,7 +72,7 @@ void Player::update()
         if (IsKeyPressed(KEY_SPACE) && this->getComponent<KinematicBody>()->isGrounded())
         {
             this->velocity.y = -500;
-            this->getComponent<AmbientAudio>()->play();
+            PlaySound(this->jumpSound);
         }
 
         if (IsKeyPressed(KEY_E))

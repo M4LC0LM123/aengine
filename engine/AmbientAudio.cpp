@@ -3,15 +3,17 @@
 
 AmbientAudio::AmbientAudio()
 {
-    this->m_sound = {0, 0};
-    this->m_paused = true;
+    this->m_pos = {0, 0};
+    this->m_paused = false;
+    this->target = {0, 0};
 }
 
 void AmbientAudio::update(Entity* entity)
 {
     Component::update(entity);
+    this->m_pos = entity->pos;
 
-    if (!this->m_paused)
+    if (EntityManager::isInCamera(entity) && !this->m_paused)
     {
         ResumeSound(this->m_sound);
     }
@@ -20,6 +22,12 @@ void AmbientAudio::update(Entity* entity)
         PauseSound(this->m_sound);
     }
 
+    std::cout << std::to_string(getDistance(this->target, this->m_pos)) << "\n";
+    // std::cout << std::to_string(this->m_pos.x) << ", " << std::to_string(this->m_pos.y) << "\n";
+    if (getDistance(this->target, this->m_pos) <= 1000)
+    {
+        SetSoundVolume(this->m_sound, 1.0f - getDistance(this->target, this->m_pos) / 1000.0f);
+    }
 }
 
 void AmbientAudio::set(std::string path)

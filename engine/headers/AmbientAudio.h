@@ -7,8 +7,10 @@ struct AmbientAudio : Component
     private:
         Sound m_sound;
         bool m_paused;
+        Vector2 m_pos;
 
     public: 
+        Vector2 target;
 
         AmbientAudio();
         virtual void update(Entity* entity) override;

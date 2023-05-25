@@ -46,6 +46,16 @@ void tileCheck(TileMap* tileMap)
         pd.y = tileMap->x * tileMap->tileScale.y;
         ps.setParticleData(pd);
     }
+    else if (getTile(tileMap) == -3)
+    {
+        Entity* entity = new Entity;
+        entity->pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y};
+        entity->scale = tileMap->tileScale;
+        entity->tag = "MUSIC";
+        entity->addComponent<AmbientAudio>();
+        entity->getComponent<AmbientAudio>()->set(LoadSound("../assets/underground.mp3"));
+        entity->getComponent<AmbientAudio>()->play();
+    }
     else if (getTile(tileMap) > 0)
     {
         Entity* entity = new Entity;
@@ -188,6 +198,15 @@ void update()
             }
         }
     }
+
+    for (Entity* entity : EntityManager::entities)
+    {
+        if (entity->tag == "MUSIC" && entity->hasComponent<AmbientAudio>())
+        {
+            entity->getComponent<AmbientAudio>()->target = player.pos;
+        }
+    }
+    
 
     if (player.pos.y >= 1600)
     {
