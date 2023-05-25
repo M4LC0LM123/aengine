@@ -45,10 +45,15 @@ struct ParticleData
     Color color;
     float lifeSpan;
     float radius;
+    ParticleBehaviour pb;
+    ParticleSpawnType pst;
 };
 
 class Particle : public Entity
 {
+    private:
+        ParticleBehaviour pb;
+
     public:
         Vector2 velocity;
         Vector2 acceleration;

@@ -8,6 +8,7 @@ class Player : public Entity
         bool debugInfo;
         Console console;
         Sound jumpSound;
+        KinematicBody* kb;
 
         Player();
         void init();

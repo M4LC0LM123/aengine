@@ -6,8 +6,10 @@
 // config 
 #include "config.h"
 
-// bodyType (box2D to Engine physics)
-#include "BodyType.h"
+// enums 
+#include "BodyType.h" // box2D to Engine physics
+#include "ParticleBehaviour.h" // particle behaviour 
+#include "ParticleSpawnType.h" // particle spawn shape
 
 // ecs
 #include "../Entity.cpp"

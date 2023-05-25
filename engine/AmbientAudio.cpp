@@ -22,7 +22,7 @@ void AmbientAudio::update(Entity* entity)
         PauseSound(this->m_sound);
     }
 
-    std::cout << std::to_string(getDistance(this->target, this->m_pos)) << "\n";
+    //std::cout << std::to_string(getDistance(this->target, this->m_pos)) << "\n";
     // std::cout << std::to_string(this->m_pos.x) << ", " << std::to_string(this->m_pos.y) << "\n";
     if (getDistance(this->target, this->m_pos) <= 1000)
     {

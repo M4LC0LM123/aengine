@@ -118,6 +118,11 @@ Vector2 multiply(Vector2 v1, float b)
     return (Vector2){v1.x * b, v1.y * b};
 }
 
+Vector2 multiplyV2(Vector2 v1, Vector2 v2)
+{
+    return (Vector2){v1.x * v2.x, v1.y * v2.y};
+}
+
 Vector2 lerp(Vector2 start, Vector2 end, float alpha)
 {
     Vector2 result;
@@ -210,6 +215,30 @@ template <typename T>
 int getArrSize(T arr[])
 {
     return sizeof(arr) / sizeof(int);
+}
+
+int randBit()
+{
+    int bit = GetRandomValue(0, 1);
+    if (bit == 0)
+        return -1;
+    else 
+        return 1;
+}
+
+Vector2 randBitVector2()
+{
+    int bit = GetRandomValue(0, 1);
+    int bit2 = GetRandomValue(0, 1);
+    if (bit == 0)
+        bit = -1;
+    else 
+        bit = 1;
+    if (bit2 == 0)
+        bit2 = -1;
+    else 
+        bit2 = 1;
+    return Vector2{(float)bit, (float)bit2};
 }
 
 #ifdef _WIN32

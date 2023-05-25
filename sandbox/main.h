@@ -10,7 +10,7 @@ Vector2 worldMousePos;
 Texture2D tileTex;
 TileMap tileMap;
 
-ParticleData pd = {100, 250, PINK, 255.0f, 10};
+ParticleData pd = {100, 250, PINK, 255.0f, 10, TOPDOWN, POINT};
 ParticleSystem ps(pd);
 int addParticles;
 

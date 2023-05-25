@@ -6,10 +6,10 @@ Player::Player()
 { 
     this->scale = {40, 40};
     this->addComponent<Bloom>();
-    this->addComponent<KinematicBody>();
-    this->getComponent<KinematicBody>()->textureScale = {40, 40};
-    this->getComponent<KinematicBody>()->color = BLANK;
-    this->getComponent<KinematicBody>()->bounce = false;
+    this->kb = this->addComponent<KinematicBody>();
+    this->kb->textureScale = {40, 40};
+    this->kb->color = BLANK;
+    this->kb->bounce = false;
     this->debugInfo = false;
     this->debugToggle = 1;
     this->tag = "Player";
@@ -22,8 +22,8 @@ void Player::init()
     this->anim.speed = 10;
     this->anim.frames = 5;
     this->anim.frameSize = {16, 16};
-    this->getComponent<KinematicBody>()->texture = LoadTexture("../assets/engine.png");
-    this->getComponent<KinematicBody>()->setFrame({16, 16}, 0);
+    this->kb->texture = LoadTexture("../assets/engine.png");
+    this->kb->setFrame({16, 16}, 0);
     this->getComponent<Bloom>()->setColorFromImage(this);
     this->jumpSound = LoadSound("../assets/jump.wav");
     SetSoundVolume(this->jumpSound, 0.5f);
@@ -39,7 +39,7 @@ void Player::update()
         {
             this->velocity.x = GetGamepadAxisMovement(0, GAMEPAD_AXIS_LEFT_X) * 500;
 
-            if (IsGamepadButtonPressed(0, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && this->getComponent<KinematicBody>()->isGrounded())
+            if (IsGamepadButtonPressed(0, GAMEPAD_BUTTON_RIGHT_FACE_DOWN) && this->kb->isGrounded())
             {
                 this->velocity.y = -500;
                 PlaySound(this->jumpSound);
@@ -54,12 +54,14 @@ void Player::update()
         if (IsKeyDown(KEY_A)) 
         {
             this->velocity.x = -500;
-            this->getComponent<KinematicBody>()->flipH = true;
+            // this->getComponent<KinematicBody>()->flipH = true;
+            this->kb->flipH = true;
         } 
         else if (IsKeyDown(KEY_D)) 
         {
             this->velocity.x = 500;
-            this->getComponent<KinematicBody>()->flipH = false;
+            // this->getComponent<KinematicBody>()->flipH = false;
+            this->kb->flipH = false;
         }
         else
         {
@@ -69,7 +71,7 @@ void Player::update()
             }
         }
         
-        if (IsKeyPressed(KEY_SPACE) && this->getComponent<KinematicBody>()->isGrounded())
+        if (IsKeyPressed(KEY_SPACE) && this->kb->isGrounded())
         {
             this->velocity.y = -500;
             PlaySound(this->jumpSound);
@@ -92,14 +94,14 @@ void Player::update()
 
     this->velocity.y += 800 * GetFrameTime();
     if (this->velocity.y >= 500) this->velocity.y = 500;
-    this->getComponent<KinematicBody>()->velocity = this->velocity;
+    this->kb->velocity = this->velocity;
 }
 
 void Player::render()
 {
     Entity::render();
-    if (this->getComponent<KinematicBody>()->velocity.x != 0) this->getComponent<KinematicBody>()->animate(&this->anim);
-    else this->getComponent<KinematicBody>()->isAnimActive = false;
+    if (this->kb->velocity.x != 0) this->kb->animate(&this->anim);
+    else this->kb->isAnimActive = false;
 }
 
 void Player::dispose()

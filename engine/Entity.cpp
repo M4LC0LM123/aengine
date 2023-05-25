@@ -100,18 +100,47 @@ Particle::Particle(ParticleData particleData)
 {
     this->acceleration = {0, 5};
     this->velocity = {(float)GetRandomValue(-100, 100), (float)GetRandomValue(200, 0)};
-    this->pos.x = (float)GetRandomValue((int) (particleData.x - 20), (int) (particleData.x + 20));
-    this->pos.y = (float)GetRandomValue((int)(particleData.y - 20), (int)(particleData.y + 20));
+    switch (particleData.pst)
+    {
+        case RECTANGULAR:
+            this->pos.x = (float)GetRandomValue((int) (particleData.x - 20), (int) (particleData.x + 20));
+            this->pos.y = (float)GetRandomValue((int)(particleData.y - 20), (int)(particleData.y + 20));
+            break;
+        case POINT:
+            this->pos.x = (float)GetRandomValue((int) (particleData.x), (int) (particleData.x));
+            this->pos.y = (float)GetRandomValue((int)(particleData.y), (int)(particleData.y));
+            break;
+        
+        default:
+            this->pos.x = (float)GetRandomValue((int) (particleData.x - 20), (int) (particleData.x + 20));
+            this->pos.y = (float)GetRandomValue((int)(particleData.y - 20), (int)(particleData.y + 20));
+            break;
+    }
+    if (particleData.pb == TOPDOWN)
+    {
+        this->velocity = multiplyV2(this->velocity, randBitVector2());
+    }
+    this->pb = particleData.pb;
     this->lifeSpan = particleData.lifeSpan;
     this->radius = particleData.radius;
     this->color = particleData.color;
 }
 void Particle::update()
 {
-    this->velocity = addM(this->velocity, this->acceleration, GetFrameTime());
+    Entity::update();
+    switch (this->pb)
+    {
+        case KINEMATIC:
+            this->velocity = addM(this->velocity, this->acceleration, GetFrameTime());
+            break;
+        
+        default:
+            this->velocity = addM(this->velocity, this->acceleration, GetFrameTime());
+            break;
+    }
+
     this->pos = addM(this->pos, this->velocity, GetFrameTime());
     this->lifeSpan -= 100 * GetFrameTime();
-    Entity::update();
 }
 void Particle::render()
 {
