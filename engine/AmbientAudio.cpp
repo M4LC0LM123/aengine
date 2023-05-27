@@ -6,6 +6,7 @@ AmbientAudio::AmbientAudio()
     this->m_pos = {0, 0};
     this->m_paused = false;
     this->target = {0, 0};
+    this->audioType = SOUND;
 }
 
 void AmbientAudio::update(Entity* entity)
@@ -15,24 +16,36 @@ void AmbientAudio::update(Entity* entity)
 
     if (EntityManager::isInCamera(entity) && !this->m_paused)
     {
-        ResumeSound(this->m_sound);
+        if (this->audioType == SOUND)
+            ResumeSound(this->m_sound);
+        else if (this->audioType == MUSIC)
+            ResumeMusicStream(this->m_music);
     }
     else
     {
-        PauseSound(this->m_sound);
+        if (this->audioType == SOUND)
+            PauseSound(this->m_sound);
+        else if (this->audioType == MUSIC)
+            PauseMusicStream(this->m_music);
     }
 
     //std::cout << std::to_string(getDistance(this->target, this->m_pos)) << "\n";
     // std::cout << std::to_string(this->m_pos.x) << ", " << std::to_string(this->m_pos.y) << "\n";
     if (getDistance(this->target, this->m_pos) <= 1000)
     {
-        SetSoundVolume(this->m_sound, 1.0f - getDistance(this->target, this->m_pos) / 1000.0f);
+        if (this->audioType == SOUND)
+            SetSoundVolume(this->m_sound, 1.0f - getDistance(this->target, this->m_pos) / 1000.0f);
+        else if (this->audioType == MUSIC)
+            SetMusicVolume(this->m_music, 1.0f - getDistance(this->target, this->m_pos) / 1000.0f);
     }
 }
 
 void AmbientAudio::set(std::string path)
 {
-    this->m_sound = LoadSound(path.c_str());
+    if (this->audioType == SOUND)
+        this->m_sound = LoadSound(path.c_str());
+    else if (this->audioType == MUSIC)
+        this->m_music = LoadMusicStream(path.c_str());
 }
 
 void AmbientAudio::set(Sound sound)
@@ -40,9 +53,24 @@ void AmbientAudio::set(Sound sound)
     this->m_sound = sound;
 }
 
-Sound AmbientAudio::get()
+void AmbientAudio::set(Music music)
+{
+    this->m_music = music;
+}
+
+void AmbientAudio::set(AudioType at)
+{
+    this->audioType = at;
+}
+
+Sound AmbientAudio::getSound()
 {
     return this->m_sound;
+}
+
+Music AmbientAudio::getMusicStream()
+{
+    return this->m_music;
 }
 
 void AmbientAudio::paused(bool p)
@@ -52,11 +80,17 @@ void AmbientAudio::paused(bool p)
 
 void AmbientAudio::play()
 {
-    PlaySound(this->m_sound);
+    if (this->audioType == SOUND)
+        PlaySound(this->m_sound);
+    else if (this->audioType == MUSIC)
+        PlayMusicStream(this->m_music);
 }
 
 void AmbientAudio::dispose()
 {
     Component::dispose();
-    UnloadSound(this->m_sound);
+    if (this->audioType == SOUND)
+        UnloadSound(this->m_sound);
+    else if (this->audioType == MUSIC)
+        UnloadMusicStream(this->m_music);
 }

@@ -10,6 +10,7 @@
 #include "BodyType.h" // box2D to Engine physics
 #include "ParticleBehaviour.h" // particle behaviour 
 #include "ParticleSpawnType.h" // particle spawn shape
+#include "AudioType.h" // audio types (Music or sound)
 
 // ecs
 #include "../Entity.cpp"

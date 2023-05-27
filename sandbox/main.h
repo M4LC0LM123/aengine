@@ -255,7 +255,7 @@ void render()
     DrawTextEx(font, TextFormat("Entities: %i", EntityManager::entities.size()), {10, 90}, font.baseSize, 2, WHITE);
     DrawTextEx(font, TextFormat("Mouse pos and tile under: %.2f, %.2f, %i", worldMousePos.x, worldMousePos.y, getTileAt(&tileMap, worldMousePos.x/tileMap.tileScale.x, worldMousePos.y/tileMap.tileScale.y)), {10, 110}, font.baseSize, 2, WHITE);
     DrawTextEx(font, TextFormat("Camera pos: %.2f, %.2f", EntityManager::camera.target.x, EntityManager::camera.target.y), {10, 130}, font.baseSize, 2, WHITE);
-    DrawTextEx(font, TextFormat("Bodies: %.i", EntityManager::world.GetBodyCount()), {10, 150}, font.baseSize, 2, WHITE);
+    DrawTextEx(font, TextFormat("Box2DBodies: %.i", EntityManager::world.GetBodyCount()), {10, 150}, font.baseSize, 2, WHITE);
     for (Entity* entity : EntityManager::entities)
     {
         if (entity->hasComponent<Object>())
