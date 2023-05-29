@@ -1,7 +1,11 @@
 #pragma once
 
-// box2D
-#include "../../include/box2d/box2d.h"
+// box2D -> 2D physics
+#include "box2d.h"
+
+// sol2 -> lua scripting
+#include "../../include/sol/sol.hpp"
+#include "cassert"
 
 // config 
 #include "config.h"
@@ -16,6 +20,7 @@
 #include "../Entity.cpp"
 #include "../EntityManager.cpp"
 #include "../Component.cpp"
+#include "../ScriptComponent.cpp"
 #include "../AmbientAudio.cpp"
 #include "../Collider.cpp"
 #include "../BoxCollider.cpp"

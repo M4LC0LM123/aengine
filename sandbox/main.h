@@ -34,11 +34,14 @@ b2FixtureDef fixtureDef;
 Entity b2Entity;
 Entity kinematic;
 
+Entity script;
+
 void tileCheck(TileMap* tileMap)
 {
     if (getTile(tileMap) == -1)
     {
         player.getComponent<KinematicBody>()->pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y};
+        script.pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y};
     }
     else if (getTile(tileMap) == -2)
     {
@@ -76,6 +79,11 @@ void start()
     SetWindowIcon(LoadImage("../assets/icon.png"));
     player.init();
     tileTex = LoadTexture("../assets/tile.png");
+
+    script.scale = {40, 40};
+    script.addComponent<ScriptComponent>("../assets/scripts/test.lua");
+    script.addComponent<Sprite>();
+    script.getComponent<Sprite>()->color = GREEN;
 
     tileMap.texture = tileTex;
     tileMap.frameScale = {16, 16};

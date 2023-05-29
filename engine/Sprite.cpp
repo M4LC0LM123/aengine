@@ -23,10 +23,10 @@ void Sprite::setFrame(Vector2 frameScale, float frame)
 }
 void Sprite::update(Entity* entity)
 {
-    entity->pos = this->pos;
-    entity->scale = this->scale;
-    entity->rotation = this->rotation;
     Component::update(entity);
+    this->pos = entity->pos;
+    this->scale = entity->scale;
+    this->rotation = entity->rotation;
 }
 void Sprite::animate(Animation* animation)
 {
