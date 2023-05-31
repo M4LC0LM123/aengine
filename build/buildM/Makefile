@@ -1,2 +1,2 @@
 default:
-	clang++ -mmacosx-version-min=11.0 -std=c++11 -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL ../../lib/libM/libraylib.a ../../lib/libM/libbox2d.a ../../sandbox/launcher/launcher.cpp -o main -I ../../include/
+	clang++ -mmacosx-version-min=11.0 -std=c++17 -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL ../../lib/libM/libraylib.a ../../lib/libM/libbox2d.a ../../lib/libM/liblua.a ../../sandbox/launcher/launcher.cpp -o main -I ../../include/ -I ../../include/box2d -I ../../include/lua -L ../../lib/libM -lraylib -lbox2d -llua
