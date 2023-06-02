@@ -36,6 +36,17 @@ T* Entity::addComponent(Args &&...args)
     return component;
 }
 template<typename T>
+void Entity::addComponent(T* component)
+{
+    components.push_back(component);
+    if (this->hasComponent<Object>())
+    {
+        this->getComponent<Object>()->pos = this->pos;
+        this->getComponent<Object>()->scale = this->scale;
+        this->getComponent<Object>()->rotation = this->rotation;
+    }
+}
+template<typename T>
 T* Entity::getComponent()
 {
     for (Component *component : components)
@@ -73,6 +84,10 @@ void Entity::resetBloom()
     {
         this->getComponent<Bloom>()->intensity = BLOOM_INTENSITY;
     }
+}
+Rectangle Entity::getBoundingBox()
+{
+    return Rectangle {this->pos.x, this->pos.y, this->scale.x, this->scale.y};
 }
 void Entity::dispose() 
 {

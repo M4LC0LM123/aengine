@@ -12,6 +12,7 @@ class PhysicsBody : public Object
         b2FixtureDef fixtureDef;
 
         PhysicsBody();
+        virtual ~PhysicsBody() = default;
         virtual void init();
         virtual void update(Entity* entity) override;
         virtual void render() override;

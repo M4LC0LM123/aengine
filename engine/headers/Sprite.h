@@ -18,6 +18,7 @@ class Sprite : public Component
         bool isAnimActive;
 
         Sprite();
+        virtual ~Sprite() = default;
         virtual void setFrame(Vector2 frameScale, float frame);
         virtual void update(Entity* entity) override;
         virtual void animate(Animation* animation);

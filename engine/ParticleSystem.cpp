@@ -22,14 +22,7 @@ void ParticleSystem::removeParticles()
 {
     for (Particle *particle : this->deletedParticles)
     {
-        for (auto it = EntityManager::entities.begin(); it != EntityManager::entities.end(); ++it)
-        {
-            if (*it == particle)
-            {
-                EntityManager::entities.erase(it);
-                break;
-            }
-        }
+        EntityManager::kill(particle);
         for (auto it = this->particles.begin(); it != this->particles.end(); ++it)
         {
             if (*it == particle)
@@ -38,6 +31,7 @@ void ParticleSystem::removeParticles()
                 break;
             }
         }
+        delete particle;
     }
 }
 

@@ -2,6 +2,10 @@
 #include "headers/toolbox.h"
 #include "headers/Entity.h"
 #include "headers/Collider.h"
+#include "headers/QuadTree.h"
+#include "headers/Component.h"
+#include "headers/StaticBody.h"
+#include "headers/RigidBody.h"
 
 bool compareEntities(Entity* e1, Entity* e2)
 {
@@ -13,6 +17,7 @@ void sortEntitiesByZIndex(std::vector<Entity*>& entities)
    std::sort(entities.begin(), entities.end(), compareEntities);
 }
 
+QuadTree EntityManager::quadtree(0, {0, 0, 10000, 10000});
 std::vector<Entity*> EntityManager::entities;
 Camera2D EntityManager::camera;
 bool EntityManager::useCamera;
@@ -24,20 +29,41 @@ b2World EntityManager::world(EntityManager::gravity);
 void EntityManager::update()
 {
     EntityManager::world.Step(1.0f/float(fps), velocityIterations, positionIterations);
-    if (!EntityManager::useCamera)
+
+    quadtree.clear();
+
+    for (Entity *entity : EntityManager::entities)
     {
-        for (Entity* entity : EntityManager::entities)
+        entity->update();
+        quadtree.insert(entity);
+    }
+
+    for (Entity* entity : EntityManager::entities)
+    {
+        if (entity->hasComponent<StaticBody>())
         {
-            entity->update();
+            entity->getComponent<StaticBody>()->collisionCheck();
+        }
+        else if (entity->hasComponent<RigidBody>())
+        {
+            entity->getComponent<RigidBody>()->collisionCheck();
         }
     }
-    else 
-    {
-        for (Entity* entity : EntityManager::entities)
-        {
-            if (EntityManager::isInCamera(entity)) entity->update();
-        }
-    }
+
+    // if (!EntityManager::useCamera)
+    // {
+    //     for (Entity* entity : EntityManager::entities)
+    //     {
+    //         entity->update();
+    //     }
+    // }
+    // else 
+    // {
+    //     for (Entity* entity : EntityManager::entities)
+    //     {
+    //         if (EntityManager::isInCamera(entity)) entity->update();
+    //     }
+    // }
 }
 
 void EntityManager::setCamera(Camera2D* camera)
@@ -67,22 +93,12 @@ void EntityManager::sortEntities()
 
 void EntityManager::render()
 {
-    //EntityManager::sortEntities();
-    if (!EntityManager::useCamera)
+    std::vector<Entity*> renderCalls = EntityManager::quadtree.retrieve({EntityManager::camera.target.x - EntityManager::camera.offset.x, EntityManager::camera.target.y - EntityManager::camera.offset.y, (float)GetScreenWidth(), (float)GetScreenHeight()});
+    for (Entity *entity : renderCalls)
     {
-        for (Entity* entity : EntityManager::entities)
+        if (EntityManager::isInCamera(entity))
         {
             entity->render();
-        }
-    }
-    else 
-    {
-        for (Entity* entity : EntityManager::entities)
-        {
-            if (EntityManager::isInCamera(entity))
-            {
-                entity->render();
-            } 
         }
     }
     if (EntityManager::renderCollidersBool)

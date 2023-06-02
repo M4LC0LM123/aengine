@@ -13,7 +13,7 @@ struct BoxCollider : public Collider
         float height;
 
     BoxCollider();
-
+    virtual ~BoxCollider() = default;
     virtual void renderColliders() override;
     virtual void update(Entity* entity) override;
     virtual void set(float x, float y, float width, float height);

@@ -7,11 +7,13 @@ StaticBody::StaticBody()
 void StaticBody::update(Entity* entity)
 {
     Body::update(entity);
-    this->collisionCheck();
+    //this->collisionCheck();
 }
 void StaticBody::collisionCheck()
 {
-    for (Entity* entity : EntityManager::entities)
+    std::vector<Entity*> potentialCollision = EntityManager::quadtree.retrieve({this->pos.x - 50, this->pos.y - 50, this->scale.x + 100, this->scale.y + 100});
+
+    for (Entity* entity : potentialCollision)
     {
         //kinematics
         if (entity->hasComponent<KinematicBody>())

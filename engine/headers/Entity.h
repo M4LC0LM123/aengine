@@ -23,12 +23,15 @@ class Entity
         template<typename T, typename... Args>
         T* addComponent(Args&&... args);
         template<typename T>
+        void addComponent(T* component);
+        template<typename T>
         T* getComponent();
         template<typename T>
         bool hasComponent();
         virtual void render();
         virtual void dispose();
         virtual void resetBloom();
+        virtual Rectangle getBoundingBox();
         bool operator==(const Entity& other) const;
         void setZ(int z);
         int getZ();

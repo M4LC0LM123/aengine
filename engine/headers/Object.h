@@ -21,6 +21,7 @@ class Object : public Component
         bool isAnimActive;
 
         Object();
+        virtual ~Object() = default;
         virtual void setFrame(Vector2 frameScale, float frame);
         virtual bool isColliding(Object* other);
         virtual void update(Entity* entity) override;

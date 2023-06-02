@@ -10,6 +10,7 @@ class RigidBody : public Body
         float gravity;
 
         RigidBody();
+        virtual ~RigidBody() = default;
         virtual void collisionCheck();
         virtual void update(Entity* entity) override;
         virtual void render() override;

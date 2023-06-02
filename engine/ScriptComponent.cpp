@@ -57,8 +57,6 @@ ScriptComponent::ScriptComponent(const std::string& scriptPath)
     this->script();
 }
 
-ScriptComponent::~ScriptComponent() { }
-
 void ScriptComponent::update(Entity* entity)
 {
     // Implement the update logic in your scripting component

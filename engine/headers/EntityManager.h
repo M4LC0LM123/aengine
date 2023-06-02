@@ -4,6 +4,7 @@
 class EntityManager
 {
     public:
+        static QuadTree quadtree;
         static std::vector<Entity*> entities;
         static Camera2D camera;
         static bool useCamera;

@@ -8,7 +8,7 @@ class ScriptComponent : public Component
         sol::load_result script;
 
         ScriptComponent(const std::string& scriptPath);
-        virtual ~ScriptComponent();
+        virtual ~ScriptComponent() = default;
         virtual void update(Entity* entity) override;
         virtual void render() override;
         virtual void dispose() override;

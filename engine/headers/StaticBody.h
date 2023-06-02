@@ -10,6 +10,7 @@ class StaticBody : public Body
         bool checkRight = true;
 
         StaticBody();
+        virtual ~StaticBody() = default;
         virtual void update(Entity* entity) override;
         virtual void collisionCheck();
         virtual void render() override;

@@ -10,17 +10,18 @@ RigidBody::RigidBody()
 };
 void RigidBody::update(Entity* entity)
 {
+    Body::update(entity);
     this->acceleration.y = this->gravity;
     this->velocity = addM(this->velocity, this->acceleration, GetFrameTime());
     this->pos = addM(this->pos, this->velocity, GetFrameTime());
     this->force = multiply(this->acceleration, this->mass);
-    this->collisionCheck();
-    Body::update(entity);
+    //this->collisionCheck();
 }
 void RigidBody::collisionCheck()
 {
-    //between kinematics
-    for (Entity* entity : EntityManager::entities)
+    std::vector<Entity*> potentialCollision = EntityManager::quadtree.retrieve({this->pos.x - 50, this->pos.y - 50, this->scale.x + 100, this->scale.y + 100});
+
+    for (Entity* entity : potentialCollision)
     {
         //between kinematics
         if (entity->hasComponent<KinematicBody>())

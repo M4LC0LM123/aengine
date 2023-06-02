@@ -8,6 +8,7 @@ class KinematicBody : public Body
         bool bounce = false;
 
         KinematicBody();
+        virtual ~KinematicBody() = default;
         virtual void update(Entity* entity) override;
         virtual void render() override;
         virtual void animate(Animation* animation) override;

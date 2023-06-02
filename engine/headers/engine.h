@@ -16,9 +16,11 @@
 #include "ParticleSpawnType.h" // particle spawn shape
 #include "AudioType.h" // audio types (Music or sound)
 
+// Quad tree
+#include "../QuadTree.cpp"
+
 // ecs
 #include "../Entity.cpp"
-#include "../EntityManager.cpp"
 #include "../Component.cpp"
 #include "../ScriptComponent.cpp"
 #include "../AmbientAudio.cpp"
@@ -33,6 +35,10 @@
 #include "../Sprite.cpp"
 #include "../Bloom.cpp"
 #include "../PhysicsBody.cpp"
+#include "../EntityManager.cpp"
+
+// object pooling
+#include "../ObjectPool.cpp"
 
 // toolbox
 #include "toolbox.h"

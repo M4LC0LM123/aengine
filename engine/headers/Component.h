@@ -4,6 +4,7 @@ class Component
 {
     public:
         Component();
+        virtual ~Component() = default;
         virtual void update(Entity* entity);
         virtual void render();
         virtual void dispose();

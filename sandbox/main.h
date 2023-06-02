@@ -36,6 +36,8 @@ Entity kinematic;
 
 Entity script;
 
+ObjectPool<StaticBody> staticPool;
+
 void tileCheck(TileMap* tileMap)
 {
     if (getTile(tileMap) == -1)
@@ -65,10 +67,11 @@ void tileCheck(TileMap* tileMap)
         entity->pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y};
         entity->scale = tileMap->tileScale;
         entity->addComponent<Bloom>();
-        entity->addComponent<StaticBody>();
-        entity->getComponent<StaticBody>()->texture = tileMap->texture;
-        entity->getComponent<StaticBody>()->color = GRAY;
-        entity->getComponent<StaticBody>()->setFrame({tileMap->frameScale.x, tileMap->frameScale.y}, tileMap->map[tileMap->x][tileMap->y] - 1);
+        StaticBody* bodyComponent = staticPool.get();
+        bodyComponent->texture = tileMap->texture;
+        bodyComponent->color = GRAY;
+        bodyComponent->setFrame({tileMap->frameScale.x, tileMap->frameScale.y}, tileMap->map[tileMap->x][tileMap->y] - 1);
+        entity->addComponent(bodyComponent);
         entity->getComponent<Bloom>()->setColorFromImage(entity);
     }
 }
@@ -118,10 +121,10 @@ void start()
     b2Entity.addComponent<Bloom>();
     b2Entity.addComponent<PhysicsBody>();
     b2Entity.getComponent<PhysicsBody>()->type = (b2BodyType) Static;
-    b2Entity.getComponent<PhysicsBody>()->pos = {-64.0f, 1400.0f};
+    b2Entity.getComponent<PhysicsBody>()->pos = {50.0f, 1600.0f};
     b2Entity.getComponent<PhysicsBody>()->color = MAROON;
     b2Entity.getComponent<PhysicsBody>()->texture = LoadTexture("../assets/fiziks.png");
-    b2Entity.getComponent<PhysicsBody>()->setTexturePos(-50, 1450);
+    b2Entity.getComponent<PhysicsBody>()->setTexturePos(50, 1650);
     b2Entity.getComponent<PhysicsBody>()->setFrame({32, 32}, 0);
     b2Entity.getComponent<PhysicsBody>()->init();
     b2Entity.getComponent<Bloom>()->setColorFromImage(&b2Entity);
@@ -130,7 +133,7 @@ void start()
     kinematic.addComponent<Bloom>();
     kinematic.addComponent<PhysicsBody>();
     kinematic.getComponent<PhysicsBody>()->type = (b2BodyType) Kinematic;
-    kinematic.getComponent<PhysicsBody>()->pos = {-64, 1450.0f};
+    kinematic.getComponent<PhysicsBody>()->pos = {0, 1450.0f};
     kinematic.getComponent<PhysicsBody>()->color = MAROON;
     kinematic.getComponent<PhysicsBody>()->init();
     kinematic.getComponent<Bloom>()->setColorFromShape(&kinematic);

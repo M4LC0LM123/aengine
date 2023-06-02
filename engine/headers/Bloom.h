@@ -8,6 +8,7 @@ class Bloom : public Component
         bool isActive;
 
         Bloom();
+        virtual ~Bloom() = default;
         virtual void update(Entity* entity) override;
         virtual void render() override;
         virtual void dispose() override;

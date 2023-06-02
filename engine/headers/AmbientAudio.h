@@ -15,6 +15,7 @@ struct AmbientAudio : Component
         AudioType audioType;
 
         AmbientAudio();
+        virtual ~AmbientAudio() = default;
         virtual void update(Entity* entity) override;
         virtual void set(std::string path);
         virtual void set(Sound sound);
