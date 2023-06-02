@@ -16,6 +16,7 @@ class EntityManager
         static void update();
         static void setCamera(Camera2D* camera);
         static bool isInCamera(Entity* other);
+        static void setBounds(Rectangle bounds);
         static void render();
         static void renderColliders(bool debugMode);
         static void dispose();

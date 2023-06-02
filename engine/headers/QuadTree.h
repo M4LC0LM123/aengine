@@ -20,4 +20,6 @@ class QuadTree
         void insert(Entity* entity);
         std::vector<Entity*> retrieve(Rectangle area);
         void clear();
+        Rectangle getBounds();
+        void setBounds(Rectangle bounds);
 };

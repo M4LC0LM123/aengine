@@ -100,7 +100,7 @@ void start()
 
     camera.init(player.pos);
 
-    font = LoadFontEx("../assets/fonts/font.ttf", 11, 0, 250);
+    font = LoadFontEx("../assets/fonts/CascadiaMono.ttf", 18, 0, 250);
 
     //fiziks
     groundBodyDef.position.Set(0.0f, 1500.0f);

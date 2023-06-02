@@ -66,6 +66,11 @@ void EntityManager::update()
     // }
 }
 
+void EntityManager::setBounds(Rectangle bounds)
+{
+    EntityManager::quadtree.setBounds(bounds);
+}
+
 void EntityManager::setCamera(Camera2D* camera)
 {
     EntityManager::camera.offset = camera->offset;

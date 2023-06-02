@@ -72,3 +72,13 @@ void QuadTree::clear()
 
     children.clear();
 }
+
+Rectangle QuadTree::getBounds()
+{
+    return this->bounds;
+}
+
+void QuadTree::setBounds(Rectangle bounds)
+{
+    this->bounds = bounds;
+}
