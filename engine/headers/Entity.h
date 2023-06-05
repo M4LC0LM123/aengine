@@ -31,6 +31,9 @@ class Entity
         virtual void render();
         virtual void dispose();
         virtual void resetBloom();
+        virtual std::vector<Entity*> getBoundingEntities();
+        virtual std::vector<Entity*> getBoundingEntities(Rectangle area);
+        virtual std::vector<Entity*> getBoundingEntities(float offset);
         virtual Rectangle getBoundingBox();
         bool operator==(const Entity& other) const;
         void setZ(int z);

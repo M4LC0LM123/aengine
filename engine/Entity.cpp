@@ -85,6 +85,18 @@ void Entity::resetBloom()
         this->getComponent<Bloom>()->intensity = BLOOM_INTENSITY;
     }
 }
+std::vector<Entity*> Entity::getBoundingEntities()
+{
+    return EntityManager::quadtree.retrieve({this->pos.x - 50, this->pos.y - 50, this->scale.x + 100, this->scale.y + 100});
+}
+std::vector<Entity*> Entity::getBoundingEntities(Rectangle area)
+{
+    return EntityManager::quadtree.retrieve(area);
+}
+std::vector<Entity*> Entity::getBoundingEntities(float offset)
+{
+    return EntityManager::quadtree.retrieve({this->pos.x - offset, this->pos.y - offset, this->scale.x + offset*2, this->scale.y + offset*2});
+}
 Rectangle Entity::getBoundingBox()
 {
     return Rectangle {this->pos.x, this->pos.y, this->scale.x, this->scale.y};
