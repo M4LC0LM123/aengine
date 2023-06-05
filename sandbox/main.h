@@ -225,8 +225,8 @@ void update()
     }
 	
     camera.lerp(center(player.pos, player.scale), 0.02f);
-    //camera.smooth(center(player.pos, player.scale), 0.005f);
-    //camera.boundsPush(center(player.pos, player.scale), 0.1f);
+    //camera.smooth(center(player.pos, player.scale), 0.02f);
+    //camera.boundsPush(center(player.pos, player.scale));
     //camera.limitToMap(&tileMap);
     ps.removeParticles();
 

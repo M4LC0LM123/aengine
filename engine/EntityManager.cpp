@@ -49,21 +49,6 @@ void EntityManager::update()
             entity->getComponent<RigidBody>()->collisionCheck();
         }
     }
-
-    // if (!EntityManager::useCamera)
-    // {
-    //     for (Entity* entity : EntityManager::entities)
-    //     {
-    //         entity->update();
-    //     }
-    // }
-    // else 
-    // {
-    //     for (Entity* entity : EntityManager::entities)
-    //     {
-    //         if (EntityManager::isInCamera(entity)) entity->update();
-    //     }
-    // }
 }
 
 void EntityManager::setBounds(Rectangle bounds)
@@ -145,14 +130,10 @@ void EntityManager::renderColliders(bool debugMode)
         {
             if (entity->hasComponent<Object>())
             {
-                if (debugMode) 
-                    DrawLineV(entity->pos, {(EntityManager::camera.target.x - EntityManager::camera.offset.x) + GetScreenWidth()/2.0f, (EntityManager::camera.target.y - EntityManager::camera.offset.y) + GetScreenHeight()/2.0f}, colliderColor);
                 if (EntityManager::isInCamera(entity)) entity->getComponent<Object>()->renderColliders();
             }
             else if (entity->hasComponent<Collider>())
             {
-                if (debugMode) 
-                    DrawLineV(entity->pos, {(EntityManager::camera.target.x - EntityManager::camera.offset.x) + GetScreenWidth()/2.0f, (EntityManager::camera.target.y - EntityManager::camera.offset.y) + GetScreenHeight()/2.0f}, colliderColor);
                 if (EntityManager::isInCamera(entity)) entity->getComponent<Collider>()->renderColliders();
             }
         }

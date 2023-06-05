@@ -5,7 +5,7 @@
 class QuadTree
 {
     private:
-        static const int MAX_CAPACITY = 15; // Maximum number of entities per quad
+        static const int MAX_CAPACITY = 10; // Maximum number of entities per quad
         static const int MAX_LEVELS = 6;   // Maximum levels of subdivision
 
         int level;

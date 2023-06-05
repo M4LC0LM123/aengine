@@ -53,8 +53,8 @@ struct OrthographicCamera
 
     void lerp(Vector2 target, float alpha)
     {
-        this->position.x += alpha * (target.x - this->position.x);
-        this->position.y += alpha * (target.y - this->position.y);
+        this->position.x += (alpha*100) * (target.x - this->position.x) * GetFrameTime();
+        this->position.y += (alpha*100) * (target.y - this->position.y) * GetFrameTime();
     }
 
     void smooth(Vector2 pos, float delta)
@@ -70,11 +70,11 @@ struct OrthographicCamera
         if (Length > minEffectLength)
         {
             float speed = fmaxf(fractionSpeed * Length, minSpeed);
-            this->position = add(this->position, scale(diff, speed*delta/Length));
+            this->position = addM(this->position, scale(diff, speed*(delta*100)/Length), GetFrameTime());
         }
     }
 
-    void boundsPush(Vector2 pos, float delta)
+    void boundsPush(Vector2 pos)
     {
         Vector2 bbox = { 0.2f, 0.2f };
 
