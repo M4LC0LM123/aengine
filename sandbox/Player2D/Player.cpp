@@ -83,6 +83,23 @@ void Player::update()
         }
     }
     
+    std::vector<Entity*> ents = this->getBoundingEntities();
+    for (Entity* e : ents)
+    {
+        if (e->tag == "SCRIPT")
+        {
+            if (CheckCollisionRecs(this->getBoundingBox(), e->getBoundingBox()))
+            {
+                e->getComponent<Sprite>()->color = RED;
+            }
+            else
+            {
+                e->getComponent<Sprite>()->color = GREEN;
+            }
+        }
+    }
+    
+
     if (this->debugToggle % 2 == 0)
     {
         this->debugInfo = true;

@@ -15,6 +15,12 @@ ScriptComponent::ScriptComponent(const std::string& scriptPath)
     v2["x"] = &Vector2::x;
     v2["y"] = &Vector2::y;
 
+    sol::usertype<Color> clr = lua.new_usertype<Color>("Color");
+    clr["r"] = &Color::r;
+    clr["g"] = &Color::g;
+    clr["b"] = &Color::b;
+    clr["a"] = &Color::a;
+
     lua.set_function("GetFrameTime", GetFrameTime);
 
     // Load and execute the script file

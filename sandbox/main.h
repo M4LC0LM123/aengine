@@ -84,6 +84,7 @@ void start()
     tileTex = LoadTexture("../assets/tile.png");
 
     script.scale = {40, 40};
+    script.tag = "SCRIPT";
     script.addComponent<ScriptComponent>("../assets/scripts/test.lua");
     script.addComponent<Sprite>();
     script.getComponent<Sprite>()->color = GREEN;

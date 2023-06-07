@@ -4,7 +4,18 @@ scaleSpeed = 50
 currSpeed = scaleSpeed
 maxScale = 100
 
+pos = nil
+scale = nil
+-- color = nil
+-- color.r = 0
+-- color.g = 255
+-- color.b = 0
+-- color.a = 255
+
 function update(entity)
+    pos = entity.pos
+    scale = entity.scale
+
     entity.scale.x = entity.scale.x + currSpeed * GetFrameTime()
     entity.scale.y = entity.scale.y + currSpeed * GetFrameTime()
 
