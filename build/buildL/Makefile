@@ -1,2 +1,2 @@
 default:
-	g++ ../../sandbox/launcher/launcher.cpp -o main -O2 -Wall -Wno-missing-braces -Wno-enum-compare -I ../../include/ -L ../../lib/libL -lraylib -I ../../include/box2d/ -lbox2d -I ../../include/lua/ -llua
+	g++ ../../sandbox/launcher/launcher.cpp -o main -O2 -Wall -Wno-missing-braces -Wno-enum-compare -Wno-unused-result -Wno-alloc-size-larger-than -I ../../include/ -L ../../lib/libL -lraylib -I ../../include/box2d/ -lbox2d -I ../../include/lua/ -llua

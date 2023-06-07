@@ -1,6 +1,7 @@
 #include "headers/ScriptComponent.h"
 #include "headers/Entity.h"
 #include "iostream"
+#include "raylib.h"
 
 sol::state lua;
 
@@ -20,6 +21,48 @@ ScriptComponent::ScriptComponent(const std::string& scriptPath)
     clr["g"] = &Color::g;
     clr["b"] = &Color::b;
     clr["a"] = &Color::a;
+    
+    // sol::usertype<Vector3> v3 = lua.new_usertype<Vector3>("Vector3");
+    // v3["x"] = &Vector3::x;
+    // v3["y"] = &Vector3::y;
+    // v3["z"] = &Vector3::z;
+
+    // sol::usertype<Vector4> v4 = lua.new_usertype<Vector4>("Vector4");
+    // v4["x"] = &Vector4::x;
+    // v4["y"] = &Vector4::y;
+    // v4["z"] = &Vector4::z;
+    // v4["w"] = &Vector4::w;
+
+    // sol::usertype<Color> clr = lua.new_usertype<Color>("Color");
+    // clr["r"] = &Color::r;
+    // clr["g"] = &Color::g;
+    // clr["b"] = &Color::b;
+    // clr["a"] = &Color::a;
+
+    // sol::usertype<Image> img = lua.new_usertype<Image>("Image");
+    // img["width"] = &Image::width;
+    // img["height"] = &Image::height;
+    // img["data"] = &Image::data;
+    // img["format"] = &Image::format;
+    // img["mipmaps"] = &Image::mipmaps;
+
+    // sol::usertype<Texture> tex = lua.new_usertype<Texture>("Texture");
+    // tex["width"] = &Texture::width;
+    // tex["height"] = &Texture::height;
+    // tex["id"] = &Texture::id;
+    // tex["format"] = &Texture::format;
+    // tex["mipmaps"] = &Texture::mipmaps;
+
+    // sol::usertype<Camera2D> camera2D = lua.new_usertype<Camera2D>("Camera2D");
+    // camera2D["offset"] = &Camera2D::offset;
+    // camera2D["rotation"] = &Camera2D::rotation;
+    // camera2D["target"] = &Camera2D::target;
+    // camera2D["zoom"] = &Camera2D::zoom;
+
+    // sol::usertype<Sound> sound = lua.new_usertype<Sound>("Sound");
+    // sound["stream"] = &Sound::stream;
+    // sound["frameCount"] = &Sound::frameCount;
+
 
     lua.set_function("GetFrameTime", GetFrameTime);
 

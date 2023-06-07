@@ -1,4 +1,4 @@
-#include "headers/Quadtree.h"
+#include "headers/QuadTree.h"
 #include "headers/Entity.h"
 
 QuadTree::QuadTree(int level, Rectangle bounds)

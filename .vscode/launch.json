@@ -28,6 +28,13 @@
             "terminalKind": "integrated"
         },
         {
+            "name": "sandbox3DLinux",
+            "type": "bashdb",
+            "request": "launch",
+            "program": "sandbox3D/buildL/build.sh",
+            "terminalKind": "integrated"
+        },
+        {
             "name": "sandbox2DMac",
             "type": "f5anything",
             "request": "launch",

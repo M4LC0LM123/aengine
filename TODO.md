@@ -6,3 +6,4 @@
 * lighting system
 * dynamic audio ✔
 * lua scripting ✔ (needs polish)
+* raycasting
