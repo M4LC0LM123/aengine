@@ -45,13 +45,28 @@ Vector3 normalizeV3(Vector3 v) {
     return v;
 }
 
-Vector3 addMV3(Vector3 vector, float scalar)
+Vector3 addMV3(Vector3 v1, Vector3 v2, float multiplier)
 {
-    Vector3 result;
-    result.x = vector.x * scalar;
-    result.y = vector.y * scalar;
-    result.z = vector.z * scalar;
-    return result;
+    if (multiplier == 0)
+    {
+        return {v1.x + v2.x * 1, v1.y + v2.y * 1, v1.z + v2.z * 1};
+    }
+    else
+    {
+        return {v1.x + v2.x * multiplier, v1.y + v2.y * multiplier, v1.z + v2.z * multiplier};
+    }
+}
+
+Vector3 subMV3(Vector3 v1, Vector3 v2, float multiplier)
+{
+    if (multiplier == 0)
+    {
+        return {v1.x - v2.x * 1, v1.y - v2.y * 1, v1.z - v2.z * 1};
+    }
+    else
+    {
+        return {v1.x - v2.x * multiplier, v1.y - v2.y * multiplier, v1.z - v2.z * multiplier};
+    }
 }
 
 Vector3 scaleV3(Vector3 v, float scale) {
@@ -116,6 +131,11 @@ Vector2 addM(Vector2 v1, Vector2 v2, float multiplier)
 Vector2 multiply(Vector2 v1, float b)
 {
     return (Vector2){v1.x * b, v1.y * b};
+}
+
+Vector3 multiplyV3(Vector3 v1, float b)
+{
+    return (Vector3){v1.x * b, v1.y * b, v1.z * b};
 }
 
 Vector2 multiplyV2(Vector2 v1, Vector2 v2)

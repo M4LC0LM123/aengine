@@ -40,6 +40,10 @@
 #include "../PhysicsBody.cpp"
 #include "../EntityManager.cpp"
 
+// 3D
+#include "Render3D.h"
+#include "../PerspectiveCamera.cpp"
+
 // object pooling
 #include "../ObjectPool.cpp"
 
