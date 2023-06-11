@@ -1,3 +1,5 @@
+#ifndef AMBIENTAUDIO_H
+#define AMBIENTAUDIO_H
 #pragma once
 #include "iostream"
 #include "raylib.h"
@@ -27,3 +29,5 @@ struct AmbientAudio : Component
         virtual void play();
         virtual void dispose() override;
 };
+
+#endif

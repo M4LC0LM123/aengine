@@ -1,3 +1,5 @@
+#ifndef ENTITYMANAGER_H
+#define ENTITYMANAGER_H
 #pragma once
 #include "vector"
 
@@ -25,3 +27,5 @@ class EntityManager
         template<typename T>
         static void instantiate(T* entity, Vector2 pos, Vector2 scale, float rotation);
 };
+
+#endif

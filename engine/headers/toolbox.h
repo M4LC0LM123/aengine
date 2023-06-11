@@ -1,3 +1,5 @@
+#ifndef TOOLBOX_H
+#define TOOLBOX_H
 #pragma once
 #include "algorithm"
 #include "iostream"    
@@ -285,4 +287,6 @@ Vector2 randBitVector2()
     {
         return std::__fs::filesystem::current_path();
     }
+#endif
+
 #endif

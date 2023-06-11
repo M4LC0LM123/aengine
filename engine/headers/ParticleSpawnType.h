@@ -1,3 +1,5 @@
+#ifndef PARTICLESPAWNTYPE_H
+#define PARTICLESPAWNTYPE_H
 #pragma once
 
 enum ParticleSpawnType
@@ -6,3 +8,5 @@ enum ParticleSpawnType
     RECTANGULAR,
     POINT,
 };
+
+#endif

@@ -1,5 +1,6 @@
+#ifndef RENDER3D_H
+#define RENDER3D_H
 #pragma once
-
 #include "raylib.h"
 #include "rlgl.h"
 
@@ -231,3 +232,5 @@ void DrawTexturePro3D(Texture2D texture, Rectangle sourceRec, Rectangle destRec,
         rlDisableTexture();
     }
 }
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef PARTICLESYSTEM_H
+#define PARTICLESYSTEM_H
 #pragma once
 #include "vector"
 #include "algorithm"
@@ -16,3 +18,5 @@ class ParticleSystem : public Entity
         void setParticleData(ParticleData particleData);
         virtual void update() override;
 };
+
+#endif

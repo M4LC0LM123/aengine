@@ -1,3 +1,5 @@
+#ifndef OBJECT_H
+#define OBJECT_H
 #pragma once
 
 class Object : public Component
@@ -39,3 +41,5 @@ class Object : public Component
 
         bool m_textureOnPos;
 };
+
+#endif

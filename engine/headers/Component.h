@@ -1,3 +1,5 @@
+#ifndef COMPONENT_H
+#define COMPONENT_H
 #pragma once
 
 class Component
@@ -14,3 +16,4 @@ class Component
         int id;
 };
 
+#endif

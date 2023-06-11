@@ -1,5 +1,6 @@
+#ifndef CONSOLE_H
+#define CONSOLE_H
 #pragma once
-#define GUI_LAYOUT_NAME_IMPLEMENTATION
 #include "raylib.h"
 
 class Console;
@@ -31,3 +32,5 @@ class Console
     private:
         char* m_endOfOutputText = nullptr;
 };
+
+#endif

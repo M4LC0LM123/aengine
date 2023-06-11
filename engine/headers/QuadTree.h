@@ -1,3 +1,5 @@
+#ifndef QUADTREE_H
+#define QUADTREE_H
 #pragma once
 #include "vector"
 #include "Entity.h"
@@ -23,3 +25,5 @@ class QuadTree
         Rectangle getBounds();
         void setBounds(Rectangle bounds);
 };
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef LOADARRAY_H
+#define LOADARRAY_H
 #include "stdio.h"
 #include "stdlib.h"
 
@@ -16,3 +18,5 @@ void loadArray2D(std::string filename, int arr[mapRows][mapCols])
     // close file
     fclose(inputFile);
 }
+
+#endif

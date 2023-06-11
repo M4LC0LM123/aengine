@@ -1,3 +1,5 @@
+#ifndef KINEMATICBODY_H
+#define KINEMATICBODY_H
 #pragma once 
 
 class KinematicBody : public Body
@@ -21,3 +23,5 @@ class KinematicBody : public Body
     private:
         int id;
 };
+
+#endif

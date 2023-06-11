@@ -1,3 +1,5 @@
+#ifndef TILEMAP_H
+#define TILEMAP_H
 #pragma once
 #include "cassert"
 
@@ -87,3 +89,5 @@ void setTileAt(TileMap* tileMap, int tileIndex, int x, int y)
         }
     }
 }
+
+#endif

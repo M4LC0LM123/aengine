@@ -1,3 +1,5 @@
+#ifndef COMMANDS_H
+#define COMMANDS_H
 #pragma once
 #include "string.h"
 #include "engine.h"
@@ -129,3 +131,5 @@ void CommandPrintEntityVector(Console* console)
         console->CommandEntryText[0] = '\0';
     }
 }
+
+#endif

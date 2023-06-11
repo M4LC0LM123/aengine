@@ -1,3 +1,5 @@
+#ifndef BODY_H
+#define BODY_H
 #pragma once
 
 class Body : public Object
@@ -21,3 +23,5 @@ class Body : public Object
         int id;
 
 };
+
+#endif

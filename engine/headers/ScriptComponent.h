@@ -1,3 +1,5 @@
+#ifndef SCRIPTCOMPONENT_H
+#define SCRIPTCOMPONENT_H
 #pragma once
 #include "Component.h"
 #include "iostream"
@@ -16,3 +18,5 @@ class ScriptComponent : public Component
     private:
         std::string scriptPath;
 };
+
+#endif

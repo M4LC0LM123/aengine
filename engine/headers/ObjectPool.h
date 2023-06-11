@@ -1,3 +1,5 @@
+#ifndef OBJECTPOOL_H
+#define OBJECTPOOL_H
 #pragma once
 #include "iostream"
 #include "vector"
@@ -14,3 +16,5 @@ class ObjectPool
         T* get();
         void release(T* object);
 };
+
+#endif

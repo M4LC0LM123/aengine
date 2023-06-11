@@ -1,3 +1,5 @@
+#ifndef STATICBODY_H
+#define STATICBODY_H
 #pragma once
 
 class StaticBody : public Body
@@ -22,3 +24,5 @@ class StaticBody : public Body
     private:
         int id;
 };
+
+#endif

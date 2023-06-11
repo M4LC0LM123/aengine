@@ -1,3 +1,5 @@
+#ifndef PREFAB_H
+#define PREFAB_H
 #pragma once
 #include "fstream"
 #include "sstream"
@@ -120,3 +122,5 @@ unsigned char floatToChar(float value)
 {
     return static_cast<unsigned char>(value);
 }
+
+#endif

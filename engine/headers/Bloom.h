@@ -1,3 +1,5 @@
+#ifndef BLOOM_H
+#define BLOOM_H
 #pragma once
 
 class Bloom : public Component
@@ -25,3 +27,5 @@ class Bloom : public Component
         int originX;
         int originY;
 };
+
+#endif

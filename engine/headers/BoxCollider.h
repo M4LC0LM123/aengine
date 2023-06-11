@@ -1,3 +1,5 @@
+#ifndef BOXCOLLIDER_H
+#define BOXCOLLIDER_H
 #pragma once
 #include "CircleCollider.h"
 
@@ -21,3 +23,5 @@ struct BoxCollider : public Collider
     virtual bool overlaps(CircleCollider* other);
 
 };
+
+#endif

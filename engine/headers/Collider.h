@@ -1,3 +1,5 @@
+#ifndef COLLIDER_H
+#define COLLIDER_H
 #pragma once 
 
 struct Collider : public Component
@@ -14,3 +16,5 @@ struct Collider : public Component
     virtual bool overlaps(Collider* other);
 
 };
+
+#endif

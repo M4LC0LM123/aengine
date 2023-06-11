@@ -1,3 +1,5 @@
+#ifndef ENGINE_H
+#define ENGINE_H
 #pragma once
 
 // Data types
@@ -70,3 +72,5 @@
 // debug and debug console
 #include "../Debug.cpp"
 #include "../Console.cpp"
+
+#endif

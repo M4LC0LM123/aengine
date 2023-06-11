@@ -28,7 +28,7 @@ b2World EntityManager::world(EntityManager::gravity);
 
 void EntityManager::update()
 {
-    EntityManager::world.Step(1.0f/float(fps), velocityIterations, positionIterations);
+    EntityManager::world.Step(1.0f/float(PhysicsTimeStep), velocityIterations, positionIterations);
 
     quadtree.clear();
 

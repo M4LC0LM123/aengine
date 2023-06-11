@@ -1,3 +1,5 @@
+#ifndef AUDIOTYPE_H
+#define AUDIOTYPE_H
 #pragma once
 
 enum AudioType 
@@ -5,3 +7,5 @@ enum AudioType
     MUSIC,
     SOUND
 };
+
+#endif

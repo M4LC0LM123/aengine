@@ -1,3 +1,5 @@
+#ifndef ANIMATION_H
+#define ANIMATION_H
 #pragma once
 
 struct Animation 
@@ -9,3 +11,5 @@ struct Animation
     int frameCounter;
     Vector2 frameSize;
 };
+
+#endif

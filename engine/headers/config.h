@@ -10,6 +10,7 @@
 int BLOOM_INTENSITY = 0;
 
 //box2D
+#define PhysicsTimeStep 144
 #define vIterations 8
 int32_t velocityIterations = vIterations;
 #define pIterations 3

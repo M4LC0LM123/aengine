@@ -1,3 +1,5 @@
+#ifndef ENTITY_H
+#define ENTITY_H
 #pragma once
 #include "vector"
 #include "toolbox.h"
@@ -77,3 +79,5 @@ class Particle : public Entity
     private:
         int id;
 };
+
+#endif

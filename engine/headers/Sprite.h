@@ -1,3 +1,5 @@
+#ifndef SPRITE_H
+#define SPRITE_H
 #pragma once
 
 class Sprite : public Component
@@ -29,3 +31,5 @@ class Sprite : public Component
     private:
         int id;
 };
+
+#endif

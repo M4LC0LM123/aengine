@@ -1,3 +1,5 @@
+#ifndef ARRAYLIST_H
+#define ARRAYLIST_H
 #pragma once
 #include "iostream"
 
@@ -17,3 +19,5 @@ class ArrayList
         int m_size; // current size
         int m_capacity; // max capacity
 };
+
+#endif

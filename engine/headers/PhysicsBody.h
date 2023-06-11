@@ -1,3 +1,5 @@
+#ifndef PHYSICSBODY_H
+#define PHYSICSBODY_H
 #pragma once
 
 class PhysicsBody : public Object
@@ -22,3 +24,5 @@ class PhysicsBody : public Object
     private:
         int id;
 };
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef RIGIDBODY_H
+#define RIGIDBODY_H
 #pragma once 
 
 class RigidBody : public Body
@@ -24,3 +26,5 @@ class RigidBody : public Body
     private:
         int id;
 };
+
+#endif
