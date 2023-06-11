@@ -102,6 +102,10 @@ Rectangle Entity::getBoundingBox()
 {
     return Rectangle {this->pos.x, this->pos.y, this->scale.x, this->scale.y};
 }
+Cuboid Entity::getBoundingCuboid()
+{
+    return Cuboid {this->pos.x, this->pos.y, this->pos.z, this->scale.x, this->scale.y, this->scale.z};
+}
 void Entity::dispose() 
 {
     for (Component* component : this->components)

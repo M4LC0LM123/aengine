@@ -8,6 +8,7 @@
 Console console;
 
 PerspectiveCamera camera;
+Cuboid cameraCube;
 float cameraSpeed;
 float sensitivity;
 bool isMouseLocked;
@@ -28,6 +29,9 @@ Vector3 cacoPos;
 float cacoSpeed;
 
 Model scientist;
+
+Cuboid ranCube;
+int i = 0;
 
 void start()
 {
@@ -59,6 +63,8 @@ void start()
 
     scientist = LoadModel("../assets/models/scientist.glb");
     scientist.transform = MatrixRotateX(DEG2RAD * 90.0f);
+
+    ranCube = {-7.5f, 1, 4, 2, 2, 2};
 }
 
 void update()
@@ -99,6 +105,13 @@ void update()
     //     camera.position.y -= cameraSpeed * GetFrameTime();
 
     camera.DefaultFPSMatrix();
+    cameraCube = {camera.position.x, camera.position.y, camera.position.z, 0.5f, 1, 0.5f};
+
+    if (CheckCollisionCuboids(cameraCube, ranCube))
+    {
+        i++;
+        Debug::println("COLLISION: " + std::to_string(i));
+    }
 }
 
 void render()
@@ -107,6 +120,9 @@ void render()
     ClearBackground(CORNFLOWER);
 
     DrawCube({0, 1, 0}, 2, 2, 2, MAROON);
+
+    DrawCube({cameraCube.x, cameraCube.y, cameraCube.z}, cameraCube.width, cameraCube.height, cameraCube.length, GREEN);
+    DrawCube({ranCube.x, ranCube.y, ranCube.z}, ranCube.width, ranCube.height, ranCube.length, YELLOW);
 
     DrawCubeTexture(cubeTex2, {5, 1, 4}, 2, 2, 2, WHITE);
     DrawCubeTextureRec(cubeTex, (Rectangle){ 0, cubeTex.height/2.0f, cubeTex.width/2.0f, cubeTex.height/2.0f }, (Vector3){ 2.0f, 1.0f, 0.0f }, 2.0f, 2.0f, 2.0f, WHITE);

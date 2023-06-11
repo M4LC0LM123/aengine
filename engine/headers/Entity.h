@@ -37,6 +37,7 @@ class Entity
         virtual std::vector<Entity*> getBoundingEntities(Rectangle area);
         virtual std::vector<Entity*> getBoundingEntities(float offset);
         virtual Rectangle getBoundingBox();
+        virtual Cuboid getBoundingCuboid();
         bool operator==(const Entity& other) const;
 
     private:

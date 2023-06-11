@@ -21,8 +21,14 @@
 #include "ParticleSpawnType.h" // particle spawn shape
 #include "AudioType.h" // audio types (Music or sound)
 
+// shapes
+#include "Cuboid.h"
+
 // Quad tree
 #include "../QuadTree.cpp"
+
+// Oct tree
+#include "../OcTree.cpp"
 
 // ecs
 #include "../Entity.cpp"
