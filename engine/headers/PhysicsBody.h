@@ -13,9 +13,8 @@ class PhysicsBody : public Object
         b2PolygonShape box;
         b2FixtureDef fixtureDef;
 
-        PhysicsBody();
+        PhysicsBody(const Entity& entity, const b2BodyType& type);
         virtual ~PhysicsBody() = default;
-        virtual void init();
         virtual void update(Entity* entity) override;
         virtual void render() override;
         virtual void dispose() override;

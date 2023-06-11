@@ -1,13 +1,12 @@
 #include "headers/PhysicsBody.h"
 
-PhysicsBody::PhysicsBody()
+PhysicsBody::PhysicsBody(const Entity& entity, const b2BodyType& type)
 {
-    this->type = b2_dynamicBody;
+    this->scale = entity.scale;
+    this->pos = entity.pos;
+    this->type = type;
     this->density = 1.0f;
     this->friction = 0.3f;
-}
-void PhysicsBody::init()
-{
     this->bodyDef.type = this->type;
     this->body = EntityManager::world.CreateBody(&this->bodyDef);
     this->box.SetAsBox(this->scale.x*0.5f, this->scale.y*0.5f);

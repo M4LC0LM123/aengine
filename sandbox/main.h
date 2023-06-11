@@ -119,24 +119,20 @@ void start()
     body->CreateFixture(&fixtureDef);
 
     b2Entity.scale = {40.0f, 40.0f};
+    b2Entity.pos = {50.0f, 1600.0f};
     b2Entity.addComponent<Bloom>();
-    b2Entity.addComponent<PhysicsBody>();
-    b2Entity.getComponent<PhysicsBody>()->type = (b2BodyType) Static;
-    b2Entity.getComponent<PhysicsBody>()->pos = {50.0f, 1600.0f};
+    b2Entity.addComponent<PhysicsBody>(b2Entity, (b2BodyType) Static);
     b2Entity.getComponent<PhysicsBody>()->color = MAROON;
     b2Entity.getComponent<PhysicsBody>()->texture = LoadTexture("../assets/fiziks.png");
     b2Entity.getComponent<PhysicsBody>()->setTexturePos(50, 1650);
     b2Entity.getComponent<PhysicsBody>()->setFrame({32, 32}, 0);
-    b2Entity.getComponent<PhysicsBody>()->init();
     b2Entity.getComponent<Bloom>()->setColorFromImage(&b2Entity);
 
     kinematic.scale = {25.0f, 25.0f};
+    kinematic.pos = {0, 1450.0f};
     kinematic.addComponent<Bloom>();
-    kinematic.addComponent<PhysicsBody>();
-    kinematic.getComponent<PhysicsBody>()->type = (b2BodyType) Kinematic;
-    kinematic.getComponent<PhysicsBody>()->pos = {0, 1450.0f};
+    kinematic.addComponent<PhysicsBody>(kinematic, (b2BodyType) Kinematic);
     kinematic.getComponent<PhysicsBody>()->color = MAROON;
-    kinematic.getComponent<PhysicsBody>()->init();
     kinematic.getComponent<Bloom>()->setColorFromShape(&kinematic);
 
     Debug::printCurrentDir();
