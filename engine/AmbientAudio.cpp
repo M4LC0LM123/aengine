@@ -12,7 +12,7 @@ AmbientAudio::AmbientAudio()
 void AmbientAudio::update(Entity* entity)
 {
     Component::update(entity);
-    this->m_pos = entity->pos;
+    this->m_pos = {entity->pos.x, entity->pos.y};
 
     if (EntityManager::isInCamera(entity) && !this->m_paused)
     {

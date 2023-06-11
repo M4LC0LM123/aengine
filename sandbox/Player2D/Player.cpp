@@ -13,7 +13,7 @@ Player::Player()
     this->debugInfo = false;
     this->debugToggle = 1;
     this->tag = "Player";
-    this->setZ(1);
+    this->pos.z = 1;
 }
 
 void Player::init()

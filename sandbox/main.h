@@ -43,7 +43,7 @@ void tileCheck(TileMap* tileMap)
     if (getTile(tileMap) == -1)
     {
         player.getComponent<KinematicBody>()->pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y};
-        script.pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y};
+        script.pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y, 0};
     }
     else if (getTile(tileMap) == -2)
     {
@@ -55,7 +55,7 @@ void tileCheck(TileMap* tileMap)
     {
         Entity* entity = new Entity;
         entity->pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y};
-        entity->scale = tileMap->tileScale;
+        entity->scale = {tileMap->tileScale.x, tileMap->tileScale.y};
         entity->tag = "MUSIC";
         entity->addComponent<AmbientAudio>();
         entity->getComponent<AmbientAudio>()->set(LoadSound("../assets/underground.mp3"));
@@ -65,7 +65,7 @@ void tileCheck(TileMap* tileMap)
     {
         Entity* entity = new Entity;
         entity->pos = {tileMap->y * tileMap->tileScale.x, tileMap->x * tileMap->tileScale.y};
-        entity->scale = tileMap->tileScale;
+        entity->scale = {tileMap->tileScale.x, tileMap->tileScale.y};
         entity->addComponent<Bloom>();
         StaticBody* bodyComponent = staticPool.get();
         bodyComponent->texture = tileMap->texture;
@@ -83,23 +83,23 @@ void start()
     player.init();
     tileTex = LoadTexture("../assets/tile.png");
 
-    script.scale = {40, 40};
-    script.tag = "SCRIPT";
-    script.addComponent<ScriptComponent>("../assets/scripts/test.lua");
-    script.addComponent<Sprite>();
-    script.getComponent<Sprite>()->color = GREEN;
-
     tileMap.texture = tileTex;
     tileMap.frameScale = {16, 16};
     tileMap.tileScale = {50, 50};
     tileMap.color = GRAY;
     initMap("../assets/maps/grid05.jbch", &tileMap);
 
+    script.scale = {40, 40, 0};
+    script.tag = "SCRIPT";
+    script.addComponent<ScriptComponent>("../assets/scripts/test.lua");
+    script.addComponent<Sprite>(&script);
+    script.getComponent<Sprite>()->color = GREEN;
+
     LoadPrefab(&prefab, "../assets/prefabs/test.jbch");
 
     addParticles = 1;
 
-    camera.init(player.pos);
+    camera.init({player.pos.x, player.pos.y});
 
     font = LoadFontEx("../assets/fonts/CascadiaMono.ttf", 18, 0, 250);
 
@@ -172,7 +172,7 @@ void update()
             setTileAt(&tileMap, 2, (int)worldMousePos.x/tileMap.tileScale.x, (int)worldMousePos.y/tileMap.tileScale.y);
             Entity* entity = new Entity;
             entity->pos = {worldMousePos.x, worldMousePos.y};
-            entity->scale = tileMap.tileScale;
+            entity->scale = {tileMap.tileScale.x, tileMap.tileScale.y};
             entity->addComponent<Bloom>();
             entity->addComponent<StaticBody>();
             entity->getComponent<StaticBody>()->texture = tileTex;
@@ -211,7 +211,7 @@ void update()
     {
         if (entity->tag == "MUSIC" && entity->hasComponent<AmbientAudio>())
         {
-            entity->getComponent<AmbientAudio>()->target = player.pos;
+            entity->getComponent<AmbientAudio>()->target = {player.pos.x, player.pos.y};
         }
     }
     
@@ -221,7 +221,7 @@ void update()
         player.getComponent<KinematicBody>()->pos = getTilePos(&tileMap, -1);
     }
 	
-    camera.lerp(center(player.pos, player.scale), 0.02f);
+    camera.lerp(center({player.pos.x, player.pos.y}, {player.scale.x, player.scale.y}), 0.02f);
     //camera.smooth(center(player.pos, player.scale), 0.02f);
     //camera.boundsPush(center(player.pos, player.scale));
     //camera.limitToMap(&tileMap);

@@ -14,9 +14,9 @@ class Entity
 {
     public:
         std::string tag;
-        Vector2 pos;
-        Vector2 scale;
-        float rotation;
+        Vector3 pos;
+        Vector3 scale;
+        Vector3 rotation;
         std::vector<Component*> components;
 
         Entity();
@@ -38,12 +38,9 @@ class Entity
         virtual std::vector<Entity*> getBoundingEntities(float offset);
         virtual Rectangle getBoundingBox();
         bool operator==(const Entity& other) const;
-        void setZ(int z);
-        int getZ();
 
     private:
         int id;
-        int zIndex = 0;
 };
 
 struct ParticleData

@@ -125,7 +125,7 @@ void CommandPrintEntityVector(Console* console)
     {
         for (int i = 0; i < (int) EntityManager::entities.size(); i++)
         {
-            std::cout << EntityManager::entities[i]->getZ() << "\n";
+            std::cout << EntityManager::entities[i]->pos.z << "\n";
         }
         strcpy(console->ConsoleOutputText, "Printed the list of entities");
         console->CommandEntryText[0] = '\0';

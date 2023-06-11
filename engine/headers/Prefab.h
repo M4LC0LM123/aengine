@@ -61,7 +61,7 @@ void LoadPrefab(Entity* entity, std::string prefab)
     if (components.find("StaticBody") != std::string::npos) entity->addComponent<StaticBody>();
     entity->pos = {x, y};
     entity->scale = {w, h};
-    entity->rotation = rotation;
+    entity->rotation = {0, 0, rotation};
     if (entity->hasComponent<Object>())
     {
         entity->getComponent<Object>()->pos = {x, y};

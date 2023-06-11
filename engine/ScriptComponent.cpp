@@ -22,10 +22,10 @@ ScriptComponent::ScriptComponent(const std::string& scriptPath)
     clr["b"] = &Color::b;
     clr["a"] = &Color::a;
     
-    // sol::usertype<Vector3> v3 = lua.new_usertype<Vector3>("Vector3");
-    // v3["x"] = &Vector3::x;
-    // v3["y"] = &Vector3::y;
-    // v3["z"] = &Vector3::z;
+    sol::usertype<Vector3> v3 = lua.new_usertype<Vector3>("Vector3");
+    v3["x"] = &Vector3::x;
+    v3["y"] = &Vector3::y;
+    v3["z"] = &Vector3::z;
 
     // sol::usertype<Vector4> v4 = lua.new_usertype<Vector4>("Vector4");
     // v4["x"] = &Vector4::x;

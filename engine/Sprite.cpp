@@ -1,9 +1,9 @@
 #include "headers/Sprite.h"
 
-Sprite::Sprite()
+Sprite::Sprite(Entity* entity)
 {
-    this->pos = {0, 0};
-    this->scale = {0, 0};
+    this->pos = {entity->pos.x, entity->pos.y};
+    this->scale = {entity->scale.x, entity->scale.y};
     this->rotation = 0;
     this->color = WHITE;
     this->tint = WHITE;
@@ -24,9 +24,9 @@ void Sprite::setFrame(Vector2 frameScale, float frame)
 void Sprite::update(Entity* entity)
 {
     Component::update(entity);
-    this->pos = entity->pos;
-    this->scale = entity->scale;
-    this->rotation = entity->rotation;
+    this->pos = {entity->pos.x, entity->pos.y};
+    this->scale = {entity->scale.x, entity->scale.y};
+    this->rotation = entity->rotation.z;
 }
 void Sprite::animate(Animation* animation)
 {

@@ -1,3 +1,4 @@
+#include "raylib.h"
 #include "headers/EntityManager.h"
 #include "headers/toolbox.h"
 #include "headers/Entity.h"
@@ -9,7 +10,7 @@
 
 bool compareEntities(Entity* e1, Entity* e2)
 {
-   return e1->getZ() < e2->getZ();
+   return e1->pos.z < e2->pos.z;
 }
 
 void sortEntitiesByZIndex(std::vector<Entity*>& entities)

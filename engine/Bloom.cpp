@@ -13,7 +13,7 @@ Bloom::Bloom()
 }
 void Bloom::update(Entity* entity)
 {
-    this->pos = center(entity->pos, entity->scale);
+    this->pos = center({entity->pos.x, entity->pos.y}, {entity->scale.x, entity->scale.y});
     if (entity->hasComponent<Object>()) this->originX = entity->getComponent<Object>()->originX;
     if (entity->hasComponent<Object>()) this->originY = entity->getComponent<Object>()->originY;
     if (this->intensity < 0) this->intensity = entity->scale.x;

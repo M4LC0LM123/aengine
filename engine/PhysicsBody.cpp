@@ -2,8 +2,8 @@
 
 PhysicsBody::PhysicsBody(const Entity& entity, const b2BodyType& type)
 {
-    this->scale = entity.scale;
-    this->pos = entity.pos;
+    this->scale = {entity.scale.x, entity.scale.y};
+    this->pos = {entity.pos.x, entity.pos.y};
     this->type = type;
     this->density = 1.0f;
     this->friction = 0.3f;
@@ -23,8 +23,9 @@ void PhysicsBody::update(Entity* entity)
     Object::update(entity);
     this->pos = B2Vec2ToVector2(this->body->GetPosition());
     this->rotation = this->body->GetAngle()*RAD2DEG;
-    entity->pos = this->pos;
-    entity->scale = this->scale;
+    entity->pos = {this->pos.x, this->pos.y, entity->pos.z};
+    entity->scale = {this->scale.x, this->scale.y, entity->scale.z};
+    entity->rotation = {0, 0, this->rotation};
 }
 void PhysicsBody::render()
 {

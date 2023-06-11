@@ -19,7 +19,7 @@ class Sprite : public Component
         bool flipV;
         bool isAnimActive;
 
-        Sprite();
+        Sprite(Entity* entity);
         virtual ~Sprite() = default;
         virtual void setFrame(Vector2 frameScale, float frame);
         virtual void update(Entity* entity) override;

@@ -1,3 +1,4 @@
+#include "raylib.h"
 #include "headers/Object.h"
 
 Object::Object()
@@ -37,9 +38,9 @@ bool Object::isColliding(Object* other)
 void Object::update(Entity* entity)
 {
     Component::update(entity);
-    entity->pos = this->pos;
-    entity->scale = this->scale;
-    entity->rotation = this->rotation;
+    entity->pos = {this->pos.x, this->pos.y, entity->pos.z};
+    entity->scale = {this->scale.x, this->scale.y, entity->scale.z};
+    entity->rotation = {0, 0, this->rotation};
     this->rec = {this->pos.x - this->originX, this->pos.y - this->originY, this->scale.x, this->scale.y};
     if (this->textureScale.x == 0) this->textureScale.x = this->scale.x;
     if (this->textureScale.y == 0) this->textureScale.y = this->scale.y;

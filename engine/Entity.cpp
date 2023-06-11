@@ -1,3 +1,4 @@
+#include "raylib.h"
 #include "headers/Entity.h"
 #include "headers/EntityManager.h"
 #include "headers/Bloom.h"
@@ -6,9 +7,9 @@
 // ------------------------ Entity ---------------------------------
 Entity::Entity()
 {
-    this->pos = {0, 0};
-    this->scale = {0, 0};
-    this->rotation = 0;
+    this->pos = {0, 0, 0};
+    this->scale = {0, 0, 0};
+    this->rotation = {0, 0, 0};
     EntityManager::entities.push_back(this);
     if (EntityManager::entities.size() == 0) this->tag = "Entity";
     else this->tag = "Entity" + std::to_string(EntityManager::entities.size());
@@ -29,9 +30,9 @@ T* Entity::addComponent(Args &&...args)
     components.push_back(component);
     if (this->hasComponent<Object>())
     {
-        this->getComponent<Object>()->pos = this->pos;
-        this->getComponent<Object>()->scale = this->scale;
-        this->getComponent<Object>()->rotation = this->rotation;
+        this->getComponent<Object>()->pos = {this->pos.x, this->pos.y};
+        this->getComponent<Object>()->scale = {this->scale.x, this->scale.y};
+        this->getComponent<Object>()->rotation = this->rotation.z;
     }
     return component;
 }
@@ -41,9 +42,9 @@ void Entity::addComponent(T* component)
     components.push_back(component);
     if (this->hasComponent<Object>())
     {
-        this->getComponent<Object>()->pos = this->pos;
-        this->getComponent<Object>()->scale = this->scale;
-        this->getComponent<Object>()->rotation = this->rotation;
+        this->getComponent<Object>()->pos = {this->pos.x, this->pos.y};
+        this->getComponent<Object>()->scale = {this->scale.x, this->scale.y};
+        this->getComponent<Object>()->rotation = this->rotation.z;
     }
 }
 template<typename T>
@@ -113,14 +114,6 @@ bool Entity::operator==(const Entity& other) const
 {
     return this->id == other.id;
 }
-void Entity::setZ(int z)
-{
-    this->zIndex = z;
-}
-int Entity::getZ()
-{
-    return this->zIndex;
-}
 
 // ------------------------ PARTICLE -----------------------------
 Particle::Particle(ParticleData particleData)
@@ -166,12 +159,12 @@ void Particle::update()
             break;
     }
 
-    this->pos = addM(this->pos, this->velocity, GetFrameTime());
+    this->pos = {this->pos.x + this->velocity.y * GetFrameTime(), this->pos.y + this->velocity.y * GetFrameTime(), this->pos.z};
     this->lifeSpan -= 100 * GetFrameTime();
 }
 void Particle::render()
 {
-    DrawCircleV(this->pos, this->radius, this->color);
+    DrawCircleV({this->pos.x, this->pos.y}, this->radius, this->color);
     Entity::render();
 }
 bool Particle::isDead()
