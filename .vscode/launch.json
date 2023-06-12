@@ -16,7 +16,7 @@
             "name": "sandbox3D",
             "type": "python",
             "request": "launch",
-            "program": "sandbox3D/build/build.py",
+            "program": "sandbox3D/buildW/build.py",
             "console": "externalTerminal",
             "justMyCode": true
         },

@@ -4,7 +4,7 @@
 #include "raylib.h"
 #include "rlgl.h"
 
-void DrawCubeTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
+void DrawCuboidTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
 {
     float x = position.x;
     float y = position.y;
@@ -98,7 +98,7 @@ void DrawTexture3D(Texture2D texture, Vector3 position, float width, float heigh
 }
 
 // Draw cube with texture piece applied to all faces
-void DrawCubeTextureRec(Texture2D texture, Rectangle source, Vector3 position, float width, float height, float length, Color color)
+void DrawCuboidTextureRec(Texture2D texture, Rectangle source, Vector3 position, float width, float height, float length, Color color)
 {
     float x = position.x;
     float y = position.y;

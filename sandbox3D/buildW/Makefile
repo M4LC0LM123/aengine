@@ -1,2 +1,2 @@
 default:
-	g++ ../launcher.cpp -o main.exe -O2 -Wall -Wno-missing-braces -I ../../include/ -L ../../lib/libW/ -lraylib -lopengl32 -lgdi32 -lwinmm
+	g++ ../launcher.cpp -o main.exe -O2 -Wall -Wno-missing-braces -Wno-enum-compare -Wno-unused-result -Wno-alloc-size-larger-than -I ../../include/ -L ../../lib/libW -lraylib -lopengl32 -lgdi32 -lwinmm -I ../../include/box2d/ -lbox2d -I ../../include/lua/ -llua
