@@ -1,0 +1,4 @@
+x: 100 y: 100 z: 0 w: 75 h: 75 d: 0 rx: 0 ry: 0 rz: 0 id: 1
+x: 200 y: 100 z: 0 w: 75 h: 75 d: 0 rx: 0 ry: 0 rz: 45 id: 2
+x: 100 y: 200 z: 0 w: 75 h: 75 d: 0 rx: 0 ry: 0 rz: 90 id: 3
+x: 200 y: 200 z: 0 w: 75 h: 75 d: 0 rx: 0 ry: 0 rz: 135 id: 4

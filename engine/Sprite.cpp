@@ -4,7 +4,7 @@ Sprite::Sprite(Entity* entity)
 {
     this->pos = {entity->pos.x, entity->pos.y};
     this->scale = {entity->scale.x, entity->scale.y};
-    this->rotation = 0;
+    this->rotation = entity->rotation.z;
     this->color = WHITE;
     this->tint = WHITE;
     this->frame = 0;

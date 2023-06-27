@@ -61,6 +61,10 @@
 // animation
 #include "Animation.h"
 
+// scene
+#include "LoadScene.h"
+#include "../Scene.cpp"
+
 // tilemap
 #include "loadArray.h"
 #include "TileMap.h"

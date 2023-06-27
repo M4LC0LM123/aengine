@@ -1,5 +1,6 @@
 #ifndef LOADARRAY_H
 #define LOADARRAY_H
+#pragma once
 #include "stdio.h"
 #include "stdlib.h"
 

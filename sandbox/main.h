@@ -38,6 +38,52 @@ Entity script;
 
 ObjectPool<StaticBody> staticPool;
 
+Scene scene;
+
+void idCheck(Scene* scene)
+{
+    if (getObject(scene)->id == 1)
+    {
+        Entity* e = new Entity;
+        e->pos = getObjectById(getObject(scene)->id, scene)->pos;
+        e->scale = getObjectById(getObject(scene)->id, scene)->scale;
+        e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
+        Sprite* sprite = e->addComponent<Sprite>(e);
+        sprite->color = PINK;
+        Debug::println(std::to_string(e->rotation.z));
+    }
+    else if (getObject(scene)->id == 2)
+    {
+        Entity* e = new Entity;
+        e->pos = getObjectById(getObject(scene)->id, scene)->pos;
+        e->scale = getObjectById(getObject(scene)->id, scene)->scale;
+        e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
+        Sprite* sprite = e->addComponent<Sprite>(e);
+        sprite->color = GREEN;
+        Debug::println(std::to_string(e->rotation.z));
+    }
+    else if (getObject(scene)->id == 3)
+    {
+        Entity* e = new Entity;
+        e->pos = getObjectById(getObject(scene)->id, scene)->pos;
+        e->scale = getObjectById(getObject(scene)->id, scene)->scale;
+        e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
+        Sprite* sprite = e->addComponent<Sprite>(e);
+        sprite->color = MAROON;
+        Debug::println(std::to_string(e->rotation.z));
+    }
+    else if (getObject(scene)->id == 4)
+    {
+        Entity* e = new Entity;
+        e->pos = getObjectById(getObject(scene)->id, scene)->pos;
+        e->scale = getObjectById(getObject(scene)->id, scene)->scale;
+        e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
+        Sprite* sprite = e->addComponent<Sprite>(e);
+        sprite->color = YELLOW;
+        Debug::println(std::to_string(e->rotation.z));
+    }
+}
+
 void tileCheck(TileMap* tileMap)
 {
     if (getTile(tileMap) == -1)
@@ -88,6 +134,8 @@ void start()
     tileMap.tileScale = {50, 50};
     tileMap.color = GRAY;
     initMap("../assets/maps/grid05.jbch", &tileMap);
+
+    scene.init("../assets/maps/scene.jbch");
 
     script.scale = {40, 40, 0};
     script.tag = "SCRIPT";
