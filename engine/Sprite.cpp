@@ -50,7 +50,7 @@ void Sprite::animate(Animation* animation)
 }
 void Sprite::render()
 {
-    DrawRectangleRec((Rectangle){this->pos.x, this->pos.y, this->scale.x, this->scale.y}, this->color);
+    DrawRectanglePro((Rectangle){this->pos.x, this->pos.y, this->scale.x, this->scale.y}, {originX, originY}, this->rotation, this->color);
 
     if (!this->isAnimActive)
     {

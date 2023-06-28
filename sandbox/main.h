@@ -48,9 +48,9 @@ void idCheck(Scene* scene)
         e->pos = getObjectById(getObject(scene)->id, scene)->pos;
         e->scale = getObjectById(getObject(scene)->id, scene)->scale;
         e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
+        e->tag = "TEST";
         Sprite* sprite = e->addComponent<Sprite>(e);
         sprite->color = PINK;
-        Debug::println(std::to_string(e->rotation.z));
     }
     else if (getObject(scene)->id == 2)
     {
@@ -58,9 +58,9 @@ void idCheck(Scene* scene)
         e->pos = getObjectById(getObject(scene)->id, scene)->pos;
         e->scale = getObjectById(getObject(scene)->id, scene)->scale;
         e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
+        e->tag = "TEST";
         Sprite* sprite = e->addComponent<Sprite>(e);
         sprite->color = GREEN;
-        Debug::println(std::to_string(e->rotation.z));
     }
     else if (getObject(scene)->id == 3)
     {
@@ -68,9 +68,9 @@ void idCheck(Scene* scene)
         e->pos = getObjectById(getObject(scene)->id, scene)->pos;
         e->scale = getObjectById(getObject(scene)->id, scene)->scale;
         e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
+        e->tag = "TEST";
         Sprite* sprite = e->addComponent<Sprite>(e);
         sprite->color = MAROON;
-        Debug::println(std::to_string(e->rotation.z));
     }
     else if (getObject(scene)->id == 4)
     {
@@ -78,9 +78,9 @@ void idCheck(Scene* scene)
         e->pos = getObjectById(getObject(scene)->id, scene)->pos;
         e->scale = getObjectById(getObject(scene)->id, scene)->scale;
         e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
+        e->tag = "TEST";
         Sprite* sprite = e->addComponent<Sprite>(e);
         sprite->color = YELLOW;
-        Debug::println(std::to_string(e->rotation.z));
     }
 }
 
