@@ -15,8 +15,15 @@ It is not as powerful and performant as Unity but it should be useful for beginn
     * Orthographic camera with pre built camera controllers
     * misc toolbox functions
     * config file in engine/headers
+    * simple scene loading system thats similar to the tilemap system
+    * 3d rendering
+    * perspective camera also with presets
+    * barebones tilemap and scene editor
 
 * Will contain:
+    * faster compiling
+    * 3d scene editor
+    * 3d physics and collision detection
     * a real lighting system
     * minecraft/terraria-style lighting system
     * easier and more automatic web building than building normal raylib games
