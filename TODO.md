@@ -6,4 +6,7 @@
 * lighting system
 * dynamic audio ✔
 * lua scripting ✔ (needs polish)
-* raycasting
+* 3d physics
+* 3d scene editor
+* improve editor
+* quadtee in to octree
