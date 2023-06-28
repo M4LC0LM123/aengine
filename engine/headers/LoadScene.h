@@ -67,8 +67,6 @@ std::vector<SceneObject*> loadSceneFile(std::string& filename)
     return objs;
 }
 
-void idCheck(Scene* scene);
-
 SceneObject* getObjectById(int id, Scene* scene)
 {
     for (SceneObject* obj : scene->objs)

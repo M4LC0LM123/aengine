@@ -40,50 +40,6 @@ ObjectPool<StaticBody> staticPool;
 
 Scene scene;
 
-void idCheck(Scene* scene)
-{
-    if (getObject(scene)->id == 1)
-    {
-        Entity* e = new Entity;
-        e->pos = getObjectById(getObject(scene)->id, scene)->pos;
-        e->scale = getObjectById(getObject(scene)->id, scene)->scale;
-        e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
-        e->tag = "TEST";
-        Sprite* sprite = e->addComponent<Sprite>(e);
-        sprite->color = PINK;
-    }
-    else if (getObject(scene)->id == 2)
-    {
-        Entity* e = new Entity;
-        e->pos = getObjectById(getObject(scene)->id, scene)->pos;
-        e->scale = getObjectById(getObject(scene)->id, scene)->scale;
-        e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
-        e->tag = "TEST";
-        Sprite* sprite = e->addComponent<Sprite>(e);
-        sprite->color = GREEN;
-    }
-    else if (getObject(scene)->id == 3)
-    {
-        Entity* e = new Entity;
-        e->pos = getObjectById(getObject(scene)->id, scene)->pos;
-        e->scale = getObjectById(getObject(scene)->id, scene)->scale;
-        e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
-        e->tag = "TEST";
-        Sprite* sprite = e->addComponent<Sprite>(e);
-        sprite->color = MAROON;
-    }
-    else if (getObject(scene)->id == 4)
-    {
-        Entity* e = new Entity;
-        e->pos = getObjectById(getObject(scene)->id, scene)->pos;
-        e->scale = getObjectById(getObject(scene)->id, scene)->scale;
-        e->rotation = getObjectById(getObject(scene)->id, scene)->rot;
-        e->tag = "TEST";
-        Sprite* sprite = e->addComponent<Sprite>(e);
-        sprite->color = YELLOW;
-    }
-}
-
 void tileCheck(TileMap* tileMap)
 {
     if (getTile(tileMap) == -1)
@@ -122,6 +78,54 @@ void tileCheck(TileMap* tileMap)
     }
 }
 
+void loadScene()
+{
+    for (SceneObject* obj : scene.objs)
+    {
+        if (obj->id == 1)
+        {
+            Entity* e = new Entity;
+            e->pos = obj->pos;
+            e->scale = obj->scale;
+            e->rotation = obj->rot;
+            e->tag = "TEST";
+            Sprite* sprite = e->addComponent<Sprite>(e);
+            sprite->color = PINK;
+        }
+        else if (obj->id == 2)
+        {
+            Entity* e = new Entity;
+            e->pos = obj->pos;
+            e->scale = obj->scale;
+            e->rotation = obj->rot;
+            e->tag = "TEST";
+            Sprite* sprite = e->addComponent<Sprite>(e);
+            sprite->color = GREEN;
+        }
+        else if (obj->id == 3)
+        {
+            Entity* e = new Entity;
+            e->pos = obj->pos;
+            e->scale = obj->scale;
+            e->rotation = obj->rot;
+            e->tag = "TEST";
+            Sprite* sprite = e->addComponent<Sprite>(e);
+            sprite->color = MAROON;
+        }
+        else if (obj->id == 4)
+        {
+            Entity* e = new Entity;
+            e->pos = obj->pos;
+            e->scale = obj->scale;
+            e->rotation = obj->rot;
+            e->tag = "TEST";
+            Sprite* sprite = e->addComponent<Sprite>(e);
+            sprite->color = YELLOW;
+        }
+    }
+    
+}
+
 void start() 
 {  
     SetExitKey(KEY_NULL);
@@ -135,7 +139,8 @@ void start()
     tileMap.color = GRAY;
     initMap("../assets/maps/grid05.jbch", &tileMap);
 
-    scene.init("../assets/maps/scene.jbch");
+    scene.init("../assets/maps/guitest.jbch");
+    loadScene();
 
     script.scale = {40, 40, 0};
     script.tag = "SCRIPT";
