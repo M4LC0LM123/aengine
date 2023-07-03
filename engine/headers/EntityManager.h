@@ -6,7 +6,7 @@
 class EntityManager
 {
     public:
-        static OcTree tree;
+        static QuadTree tree;
         static std::vector<Entity*> entities;
         static Camera2D camera;
         static bool useCamera;
