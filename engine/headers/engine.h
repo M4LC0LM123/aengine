@@ -8,6 +8,10 @@
 // box2D -> 2D physics
 #include "box2d.h"
 
+// react physics 3D -> 3D physics
+#include "reactphysics3d.h"
+namespace rp3d = reactphysics3d;
+
 // sol2 -> lua scripting
 #include "../../include/sol/sol.hpp"
 #include "cassert"

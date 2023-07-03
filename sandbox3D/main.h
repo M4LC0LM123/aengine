@@ -4,6 +4,7 @@
 #include "math.h"
 #include "raymath.h"
 #include "string"
+#include "iostream"
 
 Console console;
 
@@ -32,6 +33,21 @@ Model scientist;
 
 Cuboid ranCube;
 int i = 0;
+
+rp3d::PhysicsWorld::WorldSettings settings; 
+
+rp3d::PhysicsCommon physicsCommon;
+rp3d::PhysicsWorld* world;
+
+rp3d::Transform transform(rp3d::Vector3(5, 20, -2), rp3d::Quaternion::identity());
+rp3d::CollisionShape* boxShape;
+rp3d::RigidBody* body;
+
+const rp3d::decimal timeStep = 1.0f / 60.0f;
+
+rp3d::Transform groundTransform(rp3d::Vector3(0.0f, -1.0f, 0.0f), rp3d::Quaternion::identity());
+rp3d::CollisionShape* groundShape;
+rp3d::RigidBody* groundBody;
 
 void start()
 {
@@ -65,11 +81,31 @@ void start()
     scientist.transform = MatrixRotateX(DEG2RAD * 90.0f);
 
     ranCube = {-7.5f, 1, 4, 2, 2, 2};
+
+    //fiuziks
+    settings.defaultVelocitySolverNbIterations = 20; 
+    settings.isSleepingEnabled = false; 
+    settings.gravity = rp3d::Vector3(0, -9.81, 0); 
+
+    world = physicsCommon.createPhysicsWorld(settings);
+    world->setNbIterationsVelocitySolver(15); 
+    world->setNbIterationsPositionSolver(8);
+    boxShape = physicsCommon.createBoxShape(rp3d::Vector3(1.0f, 1.0f, 1.0f));
+    body = world->createRigidBody(transform);
+    body->addCollider(boxShape, rp3d::Transform::identity());
+    body->setType(rp3d::BodyType::DYNAMIC);
+    body->setMass(1.0f);
+
+    groundShape = physicsCommon.createBoxShape(rp3d::Vector3(20.0f, 1.0f, 20.0f));
+    groundBody = world->createRigidBody(groundTransform);
+    groundBody->addCollider(groundShape, rp3d::Transform::identity());
+    groundBody->setType(rp3d::BodyType::STATIC);
 }
 
 void update()
 {
     console.update();
+    world->update(timeStep);
 
     if (IsKeyPressed(KEY_ESCAPE))
         isMouseLocked = !isMouseLocked;
@@ -89,6 +125,9 @@ void update()
         if (IsKeyPressed(KEY_SPACE) && isMouseLocked)
             velocity.y = jumpForce;  
     }
+
+    if (IsKeyPressed(KEY_R))
+        body->setTransform(transform);
 
     if (camera.position.x > cacoPos.x)
         cacoPos.x += cacoSpeed * GetFrameTime();
@@ -121,6 +160,9 @@ void render()
 
     DrawCube({0, 1, 0}, 2, 2, 2, MAROON);
 
+    DrawCube({body->getTransform().getPosition().x, body->getTransform().getPosition().y, body->getTransform().getPosition().z}, 2, 2, 2, GREEN);
+    DrawCube({groundBody->getTransform().getPosition().x, groundBody->getTransform().getPosition().y, groundBody->getTransform().getPosition().z}, 40, 2, 40, GRAY);
+
     DrawCube({cameraCube.x, cameraCube.y, cameraCube.z}, cameraCube.width, cameraCube.height, cameraCube.length, GREEN);
     DrawCube({ranCube.x, ranCube.y, ranCube.z}, ranCube.width, ranCube.height, ranCube.length, YELLOW);
 
@@ -148,5 +190,6 @@ void render()
 
 void dispose()
 {
-
+    world->destroyRigidBody(body);
+    physicsCommon.destroyPhysicsWorld(world);
 }
