@@ -4,7 +4,7 @@
 #include "raylib.h"
 #include "rlgl.h"
 
-void DrawCuboidTexture(Texture2D texture, Vector3 position, float width, float height, float length, Color color)
+void DrawCuboidTexture(Texture2D texture, Vector3 position, float width, float height, float length, Vector3 rotation, Color color)
 {
     float x = position.x;
     float y = position.y;
@@ -15,11 +15,11 @@ void DrawCuboidTexture(Texture2D texture, Vector3 position, float width, float h
 
     // Vertex data transformation can be defined with the commented lines,
     // but in this example we calculate the transformed vertex data directly when calling rlVertex3f()
-    //rlPushMatrix();
+    rlPushMatrix();
         // NOTE: Transformation is applied in inverse order (scale -> rotate -> translate)
-        //rlTranslatef(2.0f, 0.0f, 0.0f);
-        //rlRotatef(45, 0, 1, 0);
-        //rlScalef(2.0f, 2.0f, 2.0f);
+        rlTranslatef(x, y, z);
+        rlRotatef(rotation.x, rotation.y, rotation.z, 0);
+        rlTranslatef(-x, -y, -z);
 
         rlBegin(RL_QUADS);
             rlColor4ub(color.r, color.g, color.b, color.a);
@@ -60,7 +60,7 @@ void DrawCuboidTexture(Texture2D texture, Vector3 position, float width, float h
             rlTexCoord2f(1.0f, 0.0f); rlVertex3f(x - width/2, y + height/2, z + length/2);  // Top Right Of The Texture and Quad
             rlTexCoord2f(0.0f, 0.0f); rlVertex3f(x - width/2, y + height/2, z - length/2);  // Top Left Of The Texture and Quad
         rlEnd();
-    //rlPopMatrix();
+    rlPopMatrix();
 
     rlSetTexture(0);
 }

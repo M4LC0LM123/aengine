@@ -45,7 +45,9 @@ rp3d::CollisionShape* groundShape;
 rp3d::RigidBody* groundBody;
 
 Entity obj;
-Object3D* obj3d;
+
+Entity mobj;
+PhysicsBody3D* mobjBody;
 
 void start()
 {
@@ -81,10 +83,16 @@ void start()
 
     ranCube = {-7.5f, 1, 4, 2, 2, 2};
 
-    obj.pos = {0, 2, -10};
+    obj.pos = {0, 20, -10};
     obj.scale = {3, 3, 3};
-    obj.addComponent<Object3D>(&obj);
-    obj.getComponent<Object3D>()->texture = LoadTexture("../assets/obj3d.png");
+    obj.addComponent<PhysicsBody3D>(&obj, rp3d::BodyType::DYNAMIC);
+    obj.getComponent<PhysicsBody3D>()->texture = LoadTexture("../assets/obj3d.png");
+
+    mobj.pos = {5, 20, -10};
+    mobj.scale = {2, 2, 2};
+    mobjBody = mobj.addComponent<PhysicsBody3D>(&mobj, rp3d::BodyType::DYNAMIC);
+    mobjBody->model = LoadModel("../assets/models/scientis.glb");
+    // mobjBody->setColliderFromModel(mobjBody->model);
 
     //fiuziks
     boxShape = EntityManager::physicsCommon.createBoxShape(rp3d::Vector3(1.0f, 1.0f, 1.0f));
@@ -124,7 +132,10 @@ void update()
     }
 
     if (IsKeyPressed(KEY_R))
+    {
         body->setTransform(transform);
+        obj.getComponent<PhysicsBody3D>()->body->setTransform(obj.getComponent<PhysicsBody3D>()->transform);
+    }
 
     if (camera.position.x > cacoPos.x)
         cacoPos.x += cacoSpeed * GetFrameTime();
@@ -164,12 +175,12 @@ void render()
     DrawCube({cameraCube.x, cameraCube.y, cameraCube.z}, cameraCube.width, cameraCube.height, cameraCube.length, GREEN);
     DrawCube({ranCube.x, ranCube.y, ranCube.z}, ranCube.width, ranCube.height, ranCube.length, YELLOW);
 
-    DrawCuboidTexture(cubeTex2, {5, 1, 4}, 2, 2, 2, WHITE);
+    DrawCuboidTexture(cubeTex2, {5, 1, 4}, 2, 2, 2, {0, 0, 0}, WHITE);
     DrawCubeTextureRec(cubeTex, (Rectangle){ 0, cubeTex.height/2.0f, cubeTex.width/2.0f, cubeTex.height/2.0f }, (Vector3){ 2.0f, 1.0f, 0.0f }, 2.0f, 2.0f, 2.0f, WHITE);
     DrawCubeTextureRec(cubeTex, (Rectangle){ 0, (float) cubeTex.height, (float) cubeTex.width, (float) cubeTex.height }, (Vector3){ 5.0f, 1.0f, 10.0f }, 4.0f, 1.0f, 3.0f, WHITE);
 
-    DrawCuboidTexture(wallTex1, {-5, 1, 4}, 2, 2, 2, WHITE);
-    DrawCuboidTexture(wallTex2, {-3, 1, 4}, 2, 2, 2, WHITE);
+    DrawCuboidTexture(wallTex1, {-5, 1, 4}, 2, 2, 2, {45, 60, 0}, WHITE);
+    DrawCuboidTexture(wallTex2, {-3, 1, 4}, 2, 2, 2, {45, 0, 60}, WHITE);
 
     DrawModel(scientist, {-5, 1, 4}, 0.05f, WHITE);
 

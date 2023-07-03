@@ -42,6 +42,7 @@ namespace rp3d = reactphysics3d;
 #include "../Entity.cpp"
 #include "../Component.cpp"
 #include "../Object3D.cpp"
+#include "../PhysicsBody3D.cpp"
 #include "../ScriptComponent.cpp"
 #include "../AmbientAudio.cpp"
 #include "../Collider.cpp"

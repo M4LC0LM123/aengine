@@ -1,5 +1,5 @@
-#ifndef PHYSICSBODY3D_H
-#define PHYSICSBODY3D_H
+#ifndef OBJECT3D_H
+#define OBJECT3D_H
 #pragma once
 #include "raylib.h"
 #include "Cuboid.h"

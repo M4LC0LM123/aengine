@@ -37,7 +37,7 @@ void Object3D::render()
 {
     Component::render();
     DrawCube(this->pos, this->scale.x, this->scale.y, this->scale.z, this->color);
-    DrawCuboidTexture(this->texture, this->pos, this->scale.x + 0.1f, this->scale.y + 0.1f, this->scale.z + 0.1f, this->tint);
+    DrawCuboidTexture(this->texture, this->pos, this->scale.x + 0.1f, this->scale.y + 0.1f, this->scale.z + 0.1f, this->rotation, this->tint);
     DrawModel(this->model, this->modelPos, this->modelScale.x, this->tint);
 }
 
