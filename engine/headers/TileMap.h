@@ -23,7 +23,11 @@ void initMap(std::string mapFile, TileMap* tileMap)
     {
         for (tileMap->y = 0; tileMap->y < mapCols; tileMap->y++)
         {
-            tileCheck(tileMap);
+            #ifndef ASSERT_TILEMAP
+                tileCheck(tileMap);
+            #else
+                break;
+            #endif
         }
     }
 }
