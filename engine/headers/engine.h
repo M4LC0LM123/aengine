@@ -34,9 +34,14 @@ namespace rp3d = reactphysics3d;
 // Oct tree
 #include "../OcTree.cpp"
 
+// 3D
+#include "Render3D.h"
+#include "../PerspectiveCamera.cpp"
+
 // ecs
 #include "../Entity.cpp"
 #include "../Component.cpp"
+#include "../Object3D.cpp"
 #include "../ScriptComponent.cpp"
 #include "../AmbientAudio.cpp"
 #include "../Collider.cpp"
@@ -51,10 +56,6 @@ namespace rp3d = reactphysics3d;
 #include "../Bloom.cpp"
 #include "../PhysicsBody.cpp"
 #include "../EntityManager.cpp"
-
-// 3D
-#include "Render3D.h"
-#include "../PerspectiveCamera.cpp"
 
 // object pooling
 #include "../ObjectPool.cpp"

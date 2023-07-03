@@ -34,11 +34,6 @@ Model scientist;
 Cuboid ranCube;
 int i = 0;
 
-rp3d::PhysicsWorld::WorldSettings settings;
-
-rp3d::PhysicsCommon physicsCommon;
-rp3d::PhysicsWorld* world;
-
 rp3d::Transform transform(rp3d::Vector3(5, 20, -2), rp3d::Quaternion::identity());
 rp3d::CollisionShape* boxShape;
 rp3d::RigidBody* body;
@@ -48,6 +43,9 @@ const rp3d::decimal timeStep = 1.0f / 60.0f;
 rp3d::Transform groundTransform(rp3d::Vector3(0.0f, -1.0f, 0.0f), rp3d::Quaternion::identity());
 rp3d::CollisionShape* groundShape;
 rp3d::RigidBody* groundBody;
+
+Entity obj;
+Object3D* obj3d;
 
 void start()
 {
@@ -83,30 +81,28 @@ void start()
 
     ranCube = {-7.5f, 1, 4, 2, 2, 2};
 
-    //fiuziks
-    settings.defaultVelocitySolverNbIterations = 20; 
-    settings.isSleepingEnabled = false; 
-    settings.gravity = rp3d::Vector3(0, -9.81, 0); 
+    obj.pos = {0, 2, -10};
+    obj.scale = {3, 3, 3};
+    obj.addComponent<Object3D>(&obj);
+    obj.getComponent<Object3D>()->texture = LoadTexture("../assets/obj3d.png");
 
-    world = physicsCommon.createPhysicsWorld(settings);
-    world->setNbIterationsVelocitySolver(15); 
-    world->setNbIterationsPositionSolver(8);
-    boxShape = physicsCommon.createBoxShape(rp3d::Vector3(1.0f, 1.0f, 1.0f));
-    body = world->createRigidBody(transform);
+    //fiuziks
+    boxShape = EntityManager::physicsCommon.createBoxShape(rp3d::Vector3(1.0f, 1.0f, 1.0f));
+    body = EntityManager::world3D->createRigidBody(transform);
     body->addCollider(boxShape, rp3d::Transform::identity());
     body->setType(rp3d::BodyType::DYNAMIC);
     body->setMass(1.0f);
 
-    groundShape = physicsCommon.createBoxShape(rp3d::Vector3(20.0f, 1.0f, 20.0f));
-    groundBody = world->createRigidBody(groundTransform);
+    groundShape = EntityManager::physicsCommon.createBoxShape(rp3d::Vector3(20.0f, 1.0f, 20.0f));
+    groundBody = EntityManager::world3D->createRigidBody(groundTransform);
     groundBody->addCollider(groundShape, rp3d::Transform::identity());
     groundBody->setType(rp3d::BodyType::STATIC);
 }
 
 void update()
 {
+    EntityManager::update();
     console.update();
-    world->update(timeStep);
 
     if (IsKeyPressed(KEY_ESCAPE))
         isMouseLocked = !isMouseLocked;
@@ -158,6 +154,7 @@ void render()
 {
     BeginMode3D(camera.matrix);
     ClearBackground(CORNFLOWER);
+    EntityManager::render();
 
     DrawCube({0, 1, 0}, 2, 2, 2, MAROON);
 
@@ -167,12 +164,12 @@ void render()
     DrawCube({cameraCube.x, cameraCube.y, cameraCube.z}, cameraCube.width, cameraCube.height, cameraCube.length, GREEN);
     DrawCube({ranCube.x, ranCube.y, ranCube.z}, ranCube.width, ranCube.height, ranCube.length, YELLOW);
 
-    DrawCubeTexture(cubeTex2, {5, 1, 4}, 2, 2, 2, WHITE);
+    DrawCuboidTexture(cubeTex2, {5, 1, 4}, 2, 2, 2, WHITE);
     DrawCubeTextureRec(cubeTex, (Rectangle){ 0, cubeTex.height/2.0f, cubeTex.width/2.0f, cubeTex.height/2.0f }, (Vector3){ 2.0f, 1.0f, 0.0f }, 2.0f, 2.0f, 2.0f, WHITE);
     DrawCubeTextureRec(cubeTex, (Rectangle){ 0, (float) cubeTex.height, (float) cubeTex.width, (float) cubeTex.height }, (Vector3){ 5.0f, 1.0f, 10.0f }, 4.0f, 1.0f, 3.0f, WHITE);
 
-    DrawCubeTexture(wallTex1, {-5, 1, 4}, 2, 2, 2, WHITE);
-    DrawCubeTexture(wallTex2, {-3, 1, 4}, 2, 2, 2, WHITE);
+    DrawCuboidTexture(wallTex1, {-5, 1, 4}, 2, 2, 2, WHITE);
+    DrawCuboidTexture(wallTex2, {-3, 1, 4}, 2, 2, 2, WHITE);
 
     DrawModel(scientist, {-5, 1, 4}, 0.05f, WHITE);
 
@@ -191,6 +188,5 @@ void render()
 
 void dispose()
 {
-    world->destroyRigidBody(body);
-    physicsCommon.destroyPhysicsWorld(world);
+    EntityManager::dispose();
 }

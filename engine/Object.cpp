@@ -70,6 +70,7 @@ void Object::animate(Animation* animation)
 
 void Object::render()
 {
+    Component::render();
     DrawRectanglePro((Rectangle){this->pos.x, this->pos.y, this->scale.x, this->scale.y}, {originX, originY}, this->rotation, this->color);
 
     if (!this->isAnimActive)
@@ -83,7 +84,6 @@ void Object::render()
         else if (flipH && flipV)
             DrawTexturePro(this->texture, (Rectangle){(this->frame * this->frameScale.x) + this->frameScale.x, this->frameScale.y, -this->frameScale.x, -this->frameScale.y}, (Rectangle){this->texturePos.x, this->texturePos.y, this->textureScale.x, this->textureScale.y}, (Vector2){this->originX, this->originY}, this->rotation, this->tint);
     }
-    Component::render();
 }
 
 void Object::renderColliders()

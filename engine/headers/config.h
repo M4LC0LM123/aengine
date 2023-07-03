@@ -8,6 +8,7 @@
 #define mapCols 32
 #define colliderColor GREEN
 int BLOOM_INTENSITY = 0;
+#define renderMode "3D"
 
 // box2D
 #define Physics2D
@@ -25,7 +26,7 @@ int32_t positionIterations = pIterations;
 int32_t velocityIterations3D = vIterations3D;
 #define pIterations3D 8
 int32_t positionIterations3D = pIterations;
-#define grav3D 9
+#define grav3D -9.81
 
 // user defined
 //#define ASSERT_TILEMAP

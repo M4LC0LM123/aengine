@@ -104,10 +104,20 @@ void EntityManager::sortEntities()
 
 void EntityManager::render()
 {
-    std::vector<Entity*> renderCalls = EntityManager::tree.retrieve({EntityManager::camera.target.x - EntityManager::camera.offset.x, EntityManager::camera.target.y - EntityManager::camera.offset.y, (float)GetScreenWidth(), (float)GetScreenHeight()});
-    for (Entity *entity : renderCalls)
+    if (strcmp(renderMode, "2D"))
     {
-        if (EntityManager::isInCamera(entity))
+        std::vector<Entity*> renderCalls = EntityManager::tree.retrieve({EntityManager::camera.target.x - EntityManager::camera.offset.x, EntityManager::camera.target.y - EntityManager::camera.offset.y, (float)GetScreenWidth(), (float)GetScreenHeight()});
+        for (Entity *entity : renderCalls)
+        {
+            if (EntityManager::isInCamera(entity))
+            {
+                entity->render();
+            }
+        }
+    }
+    else
+    {
+        for (Entity *entity : EntityManager::entities)
         {
             entity->render();
         }
