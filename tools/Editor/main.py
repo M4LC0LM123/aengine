@@ -8,6 +8,7 @@ from loadTileMap import *
 from object import Object
 from saveScene import *
 from loadScene import *
+from objectInfo import ObjectInfo
 
 pygame.init()
 
@@ -73,6 +74,8 @@ font = pygame.font.Font("../fonts/CascadiaMono.ttf", fontsize)
 
 isTileMap = True
 selectMode = False
+
+objInfo = ObjectInfo(manager, Object(0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
 
 running = True
 while running:
@@ -203,8 +206,16 @@ while running:
             obj.height = height
             obj.render(screen, RED, gridOriginX, gridOriginY)
 
+            if obj.selected:
+                objInfo.set(manager, obj)
+                objInfo.render(screen)
+            else:
+                objInfo.show(False)
+
 
     pygame.draw.rect(screen, GREEN, (gridOriginX, gridOriginY, gridWidth * width, gridHeight * height), 1)
+    pygame.draw.line(screen, YELLOW, (gridOriginX + (gridWidth*width)/2, gridOriginY), (gridOriginX + (gridWidth*width)/2, gridOriginY + gridHeight*height), 1)
+    pygame.draw.line(screen, PINK, (gridOriginX, gridOriginY + (gridHeight*height)/2), (gridOriginX + gridWidth*width, gridOriginY + (gridHeight*height)/2), 1)
 
     pygame.draw.rect(screen, "#32628A", panel)
 
@@ -217,6 +228,10 @@ while running:
         drawText(screen, "Mode: Select", panelX + 55, panelY + 365 + 75, pygame.font.Font("../fonts/CascadiaMono.ttf", 14), BLACK, None)
     else:
         drawText(screen, "Mode: Place", panelX + 55, panelY + 365 + 75, pygame.font.Font("../fonts/CascadiaMono.ttf", 14), BLACK, None)
+
+    if mouseX < (gridOriginX + (width * gridWidth)) and mouseY < (gridOriginY + (height * gridHeight)) and mouseX >= gridOriginX and mouseY >= gridOriginY:
+        drawText(screen, "mouse x: " + str(mouseX - gridOriginX), panelX + 55, panelY + 465, pygame.font.Font("../fonts/CascadiaMono.ttf", 14), BLACK, None)
+        drawText(screen, "mouse y: " + str(mouseY - gridOriginY), panelX + 55, panelY + 490, pygame.font.Font("../fonts/CascadiaMono.ttf", 14), BLACK, None)
 
     manager.draw_ui(screen)
     manager.update(time_delta)
