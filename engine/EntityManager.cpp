@@ -3,7 +3,7 @@
 #include "headers/toolbox.h"
 #include "headers/Entity.h"
 #include "headers/Collider.h"
-#include "headers/QuadTree.h"
+#include "headers/OcTree.h"
 #include "headers/Component.h"
 #include "headers/StaticBody.h"
 #include "headers/RigidBody.h"
@@ -18,7 +18,7 @@ void sortEntitiesByZIndex(std::vector<Entity*>& entities)
    std::sort(entities.begin(), entities.end(), compareEntities);
 }
 
-QuadTree EntityManager::quadtree(0, {0, 0, 10000, 10000});
+QuadTree EntityManager::tree(0, {0, 0, 10000, 10000});
 std::vector<Entity*> EntityManager::entities;
 Camera2D EntityManager::camera;
 bool EntityManager::useCamera;
@@ -26,17 +26,37 @@ bool EntityManager::renderCollidersBool = false;
 bool EntityManager::debugBool = false;
 b2Vec2 EntityManager::gravity(0.0f, b2Grav);
 b2World EntityManager::world(EntityManager::gravity);
+rp3d::PhysicsWorld::WorldSettings EntityManager::settings;
+rp3d::PhysicsCommon EntityManager::physicsCommon;
+rp3d::PhysicsWorld* EntityManager::world3D = EntityManager::physicsCommon.createPhysicsWorld(EntityManager::settings);
+
+void EntityManager::init()
+{
+    EntityManager::settings.defaultVelocitySolverNbIterations = 20; 
+    EntityManager::settings.isSleepingEnabled = false; 
+    EntityManager::settings.gravity = rp3d::Vector3(0, grav3D, 0); 
+
+    EntityManager::world3D = physicsCommon.createPhysicsWorld(EntityManager::settings);
+    EntityManager::world3D->setNbIterationsVelocitySolver(velocityIterations3D); 
+    EntityManager::world3D->setNbIterationsPositionSolver(positionIterations3D);
+}
 
 void EntityManager::update()
 {
-    EntityManager::world.Step(1.0f/float(PhysicsTimeStep), velocityIterations, positionIterations);
+    #ifdef Physics2D
+        EntityManager::world.Step(1.0f/float(PhysicsTimeStep), velocityIterations, positionIterations);
+    #endif
 
-    quadtree.clear();
+    #ifdef Physics3D
+        EntityManager::world3D->update(1.0f/float(PhysicsTimeStep3D));
+    #endif
+
+    tree.clear();
 
     for (Entity *entity : EntityManager::entities)
     {
         entity->update();
-        quadtree.insert(entity);
+        tree.insert(entity);
     }
 
     for (Entity* entity : EntityManager::entities)
@@ -54,7 +74,7 @@ void EntityManager::update()
 
 void EntityManager::setBounds(Rectangle bounds)
 {
-    EntityManager::quadtree.setBounds(bounds);
+    EntityManager::tree.setBounds(bounds);
 }
 
 void EntityManager::setCamera(Camera2D* camera)
@@ -84,7 +104,7 @@ void EntityManager::sortEntities()
 
 void EntityManager::render()
 {
-    std::vector<Entity*> renderCalls = EntityManager::quadtree.retrieve({EntityManager::camera.target.x - EntityManager::camera.offset.x, EntityManager::camera.target.y - EntityManager::camera.offset.y, (float)GetScreenWidth(), (float)GetScreenHeight()});
+    std::vector<Entity*> renderCalls = EntityManager::tree.retrieve({EntityManager::camera.target.x - EntityManager::camera.offset.x, EntityManager::camera.target.y - EntityManager::camera.offset.y, (float)GetScreenWidth(), (float)GetScreenHeight()});
     for (Entity *entity : renderCalls)
     {
         if (EntityManager::isInCamera(entity))

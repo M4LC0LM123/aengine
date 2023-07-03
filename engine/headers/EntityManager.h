@@ -6,7 +6,7 @@
 class EntityManager
 {
     public:
-        static QuadTree quadtree;
+        static OcTree tree;
         static std::vector<Entity*> entities;
         static Camera2D camera;
         static bool useCamera;
@@ -14,7 +14,11 @@ class EntityManager
         static bool debugBool;
         static b2Vec2 gravity;
         static b2World world;
+        static rp3d::PhysicsWorld::WorldSettings settings;
+        static rp3d::PhysicsCommon physicsCommon;
+        static rp3d::PhysicsWorld* world3D;
 
+        static void init();
         static void update();
         static void setCamera(Camera2D* camera);
         static bool isInCamera(Entity* other);

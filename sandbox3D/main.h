@@ -34,7 +34,7 @@ Model scientist;
 Cuboid ranCube;
 int i = 0;
 
-rp3d::PhysicsWorld::WorldSettings settings; 
+rp3d::PhysicsWorld::WorldSettings settings;
 
 rp3d::PhysicsCommon physicsCommon;
 rp3d::PhysicsWorld* world;
@@ -51,6 +51,7 @@ rp3d::RigidBody* groundBody;
 
 void start()
 {
+    EntityManager::init();
     SetExitKey(KEY_NULL);
     camera.position = {0, 100, 10};
     camera.target = {0, 0, 0};

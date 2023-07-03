@@ -128,6 +128,7 @@ void loadScene()
 
 void start() 
 {  
+    EntityManager::init();
     SetExitKey(KEY_NULL);
     SetWindowIcon(LoadImage("../assets/icon.png"));
     player.init();

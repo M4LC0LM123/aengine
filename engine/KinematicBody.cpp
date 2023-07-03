@@ -30,7 +30,7 @@ void KinematicBody::pointTo(Vector2 point)
 }
 bool KinematicBody::isGrounded()
 {
-    std::vector<Entity*> potentialCollision = EntityManager::quadtree.retrieve({this->pos.x - 50, this->pos.y - 50, this->scale.x + 100, this->scale.y + 100});
+    std::vector<Entity*> potentialCollision = EntityManager::tree.retrieve({this->pos.x - 50, this->pos.y - 50, this->scale.x + 100, this->scale.y + 100});
 
     for (Entity* entity : potentialCollision)
     {
