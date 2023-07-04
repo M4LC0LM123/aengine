@@ -50,9 +50,7 @@ struct PerspectiveCamera
 
                 // Lock mouse to window center (it is platform specific because of macos)
                 #ifdef __APPLE__
-                    #include "ApplicationServices/ApplicationServices.h"
-                    CGPoint warpPoint = CGPointMake(GetScreenWidth() / 2, GetScreenHeight() / 2);
-                    CGWarpMouseCursorPosition(warpPoint);
+                    this->prevMousePos = GetMousePosition();
                 #else
                     SetMousePosition(GetScreenWidth() / 2, GetScreenHeight() / 2);
                     this->prevMousePos = GetMousePosition();
