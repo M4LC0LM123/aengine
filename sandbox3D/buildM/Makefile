@@ -1,0 +1,2 @@
+default:
+	clang++ -mmacosx-version-min=11.0 -std=c++17 -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL ../../lib/libM/libraylib.a ../../lib/libM/libbox2d.a ../../lib/libM/liblua.a ../launcher.cpp -o main -I ../../include/ -I ../../include/box2d -I ../../include/lua -I ../../include/reactphysics3d -L ../../lib/libM -lraylib -lbox2d -llua -lReactPhysics3D

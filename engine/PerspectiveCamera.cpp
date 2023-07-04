@@ -28,6 +28,7 @@ struct PerspectiveCamera
 
         void SetFirstPerson(float sensitivity, bool isMouseLocked)
         {
+            
             if (isMouseLocked)
             {
                 HideCursor();
@@ -47,9 +48,16 @@ struct PerspectiveCamera
                 // Update previous mouse position
                 this->prevMousePos = currentMousePos;
 
-                // Lock mouse to window center
-                SetMousePosition(GetScreenWidth() / 2, GetScreenHeight() / 2);
-                this->prevMousePos = GetMousePosition();
+                // Lock mouse to window center (it is platform specific because of macos)
+                #ifdef __APPLE__
+                    #include "ApplicationServices/ApplicationServices.h"
+                    CGPoint warpPoint = CGPointMake(GetScreenWidth() / 2, GetScreenHeight() / 2);
+                    CGWarpMouseCursorPosition(warpPoint);
+                #else
+                    SetMousePosition(GetScreenWidth() / 2, GetScreenHeight() / 2);
+                    this->prevMousePos = GetMousePosition();
+                #endif
+
             }
             else
             {
