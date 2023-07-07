@@ -2,7 +2,6 @@
 #define PHYSICSBODY3D_H
 #pragma once
 #include "raylib.h"
-#include "reactphysics3d.h"
 #include "Object3D.h"
 
 class PhysicsBody3D : public Object3D

@@ -176,8 +176,8 @@ void render()
     DrawCube({ranCube.x, ranCube.y, ranCube.z}, ranCube.width, ranCube.height, ranCube.length, YELLOW);
 
     DrawCuboidTexture(cubeTex2, {5, 1, 4}, 2, 2, 2, {0, 0, 0}, WHITE);
-    DrawCubeTextureRec(cubeTex, (Rectangle){ 0, cubeTex.height/2.0f, cubeTex.width/2.0f, cubeTex.height/2.0f }, (Vector3){ 2.0f, 1.0f, 0.0f }, 2.0f, 2.0f, 2.0f, WHITE);
-    DrawCubeTextureRec(cubeTex, (Rectangle){ 0, (float) cubeTex.height, (float) cubeTex.width, (float) cubeTex.height }, (Vector3){ 5.0f, 1.0f, 10.0f }, 4.0f, 1.0f, 3.0f, WHITE);
+    DrawCuboidTextureRec(cubeTex, (Rectangle){ 0, cubeTex.height/2.0f, cubeTex.width/2.0f, cubeTex.height/2.0f }, (Vector3){ 2.0f, 1.0f, 0.0f }, 2.0f, 2.0f, 2.0f, WHITE);
+    DrawCuboidTextureRec(cubeTex, (Rectangle){ 0, (float) cubeTex.height, (float) cubeTex.width, (float) cubeTex.height }, (Vector3){ 5.0f, 1.0f, 10.0f }, 4.0f, 1.0f, 3.0f, WHITE);
 
     DrawCuboidTexture(wallTex1, {-5, 1, 4}, 2, 2, 2, {45, 60, 0}, WHITE);
     DrawCuboidTexture(wallTex2, {-3, 1, 4}, 2, 2, 2, {45, 0, 60}, WHITE);
